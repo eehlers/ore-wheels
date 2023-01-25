@@ -3,20 +3,20 @@ on: workflow_dispatch
 jobs:
   wheels-windows:
     runs-on: windows-2019
-  steps:
-  - uses: actions/checkout@v3
-  - name: Setup MSBuild
-    uses: microsoft/setup-msbuild@v1.1
-  - name: Setup Boost
-    run: |
-      $Url = "https://boostorg.jfrog.io/artifactory/main/release/1.81.0/binaries/boost_1_81_0-msvc-14.2-64.exe"
-      (New-Object System.Net.WebClient).DownloadFile($Url, "$env:TEMP\boost.exe")
-      Start-Process -Wait -FilePath "$env:TEMP\boost.exe" "/SILENT","/SP-","/SUPPRESSMSGBOXES","/DIR=C:\local\boost"
-  - name: Build ORE
-    run: |
-      Expand-Archive -Path ORE-0.1.1-Source.zip -DestinationPath C:\local
-      cd C:\local\ORE-0.1.1-Source
-      mkdir build2
-      cd build2
-      cmake  -G "Visual Studio 17 2022" -A x64 ..
-      cmake --build . --config Release
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.1
+    - name: Setup Boost
+      run: |
+        $Url = "https://boostorg.jfrog.io/artifactory/main/release/1.81.0/binaries/boost_1_81_0-msvc-14.2-64.exe"
+        (New-Object System.Net.WebClient).DownloadFile($Url, "$env:TEMP\boost.exe")
+        Start-Process -Wait -FilePath "$env:TEMP\boost.exe" "/SILENT","/SP-","/SUPPRESSMSGBOXES","/DIR=C:\local\boost"
+    - name: Build ORE
+      run: |
+        Expand-Archive -Path ORE-0.1.1-Source.zip -DestinationPath C:\local
+        cd C:\local\ORE-0.1.1-Source
+        mkdir build2
+        cd build2
+        cmake  -G "Visual Studio 17 2022" -A x64 ..
+        cmake --build . --config Release
