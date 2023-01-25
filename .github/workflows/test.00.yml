@@ -13,8 +13,8 @@ jobs:
         (New-Object System.Net.WebClient).DownloadFile($Url, "$env:TEMP\boost.exe")
         Start-Process -Wait -FilePath "$env:TEMP\boost.exe" "/SILENT","/SP-","/SUPPRESSMSGBOXES","/DIR=C:\local\boost"
     - name: Build ORE
-      #env:
-      #  BOOST_ROOT: C:\local\boost
+      env:
+        BOOST_ROOT: C:\local\boost
       run: |
         Expand-Archive -Path ORE-0.1.1-Source.zip -DestinationPath C:\local
         cd C:\local\ORE-0.1.1-Source
