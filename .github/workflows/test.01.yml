@@ -1,0 +1,20 @@
+name: Build Wheels 1
+on: workflow_dispatch
+jobs:
+  wheels-windows:
+    runs-on: windows-2022
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.1
+    - name: Setup Boost
+      run: |
+        $Url = "https://boostorg.jfrog.io/artifactory/main/release/1.80.0/binaries/boost_1_80_0-msvc-14.3-64.exe"
+        (New-Object System.Net.WebClient).DownloadFile($Url, "$env:TEMP\boost.exe")
+        Start-Process -Wait -FilePath "$env:TEMP\boost.exe" "/SILENT","/SP-","/SUPPRESSMSGBOXES","/DIR=C:\local\boost"
+    - name: Build ORE
+      run: |
+        Expand-Archive -Path ore.zip -DestinationPath C:\local
+        cd C:\local\ore\build
+        msbuild ORE.sln -p:Configuration="Release" -p:Platform=x64
+        dir lib
