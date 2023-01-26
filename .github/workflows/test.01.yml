@@ -17,4 +17,3 @@ jobs:
         Expand-Archive -Path ore.zip -DestinationPath C:\local
         cd C:\local\ore\build
         msbuild ORE.sln -p:Configuration="Release" -p:Platform=x64
-        dir lib
