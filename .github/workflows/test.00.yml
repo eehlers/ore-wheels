@@ -14,7 +14,8 @@ jobs:
         Start-Process -Wait -FilePath "$env:TEMP\boost.exe" "/SILENT","/SP-","/SUPPRESSMSGBOXES","/DIR=C:\local\boost"
     - name: Build ORE
       env:
-        BOOST_ROOT: C:\local\boost
+        Boost_ROOT: C:\local\boost
+        BOOST_LIBRARYDIR: C:\local\boost\lib64-msvc-14.3
       run: |
         Expand-Archive -Path ORE-0.1.1-Source.zip -DestinationPath C:\local
         cd C:\local\ORE-0.1.1-Source
