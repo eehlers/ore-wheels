@@ -10,22 +10,25 @@ jobs:
         $Url = "https://boostorg.jfrog.io/artifactory/main/release/1.80.0/binaries/boost_1_80_0-msvc-14.3-64.exe"
         (New-Object System.Net.WebClient).DownloadFile($Url, "$env:TEMP\boost.exe")
         Start-Process -Wait -FilePath "$env:TEMP\boost.exe" "/SILENT","/SP-","/SUPPRESSMSGBOXES","/DIR=C:\local\boost"
-    - name: Build ORE
+#    - name: Build ORE
 #      env:
 #        Boost_ROOT: C:\local\boost
-      run: |
-        Expand-Archive -Path ore.00.zip -DestinationPath C:\local
+#      run: |
+#        Expand-Archive -Path ore.00.zip -DestinationPath C:\local
 #        cd C:\local\ORE-0.1.1-Source
 #        mkdir build2
 #        cd build2
 #        cmake  -G "Visual Studio 17 2022" -A x64 ..
 #        cmake --build . --config Release --verbose
+    - name: Unpack ORE source
+      run: |
+        Expand-Archive -Path ore.00.zip -DestinationPath C:\local
     - name: Unpack ORE libs
       run: |
         Expand-Archive -Path ore.01.zip -DestinationPath C:\local
     - name: Unpack ORE-SWIG
       run: |
-        Expand-Archive -Path oreswig.00.zip -DestinationPath .
+        Expand-Archive -Path oreswig.01.zip -DestinationPath .
     - name: Build ORE wheels
       uses: pypa/cibuildwheel@v2.11.1
       env:
