@@ -48,7 +48,7 @@ jobs:
         BOOST_LIB: C:\local\boost\lib64-msvc-14.3
         ORE_DIR: C:\local\ore
         CIBW_SKIP: cp36-*
-        CIBW_ARCHS_WINDOWS: Win32
+        CIBW_ARCHS_WINDOWS: x86
         CIBW_BUILD_VERBOSITY: 2
       with:
         package-dir: oreswig/OREAnalytics-SWIG/Python
