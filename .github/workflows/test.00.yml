@@ -28,7 +28,7 @@ jobs:
 #        Expand-Archive -Path ore.01.zip -DestinationPath C:\local
     - name: Unpack ORE-SWIG
       run: |
-        Expand-Archive -Path oreswig.01.zip -DestinationPath .
+        Expand-Archive -Path oreswig.02.zip -DestinationPath .
     - name: Build ORE wheels
       uses: pypa/cibuildwheel@v2.11.1
       env:
