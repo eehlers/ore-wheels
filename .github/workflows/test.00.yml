@@ -21,7 +21,7 @@ jobs:
         cd C:\local\ore
         mkdir build2
         cd build2
-        cmake -DMSVC_LINK_DYNAMIC_RUNTIME=OFF -G "Visual Studio 17 2022" -A x64 ..
+        cmake -DBUILD_DOC=OFF -DMSVC_LINK_DYNAMIC_RUNTIME=OFF -G "Visual Studio 17 2022" -A x64 ..
         cmake --build . --config Release --verbose
     - name: Unpack ORE-SWIG
       run: |
