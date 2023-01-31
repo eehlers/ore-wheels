@@ -21,13 +21,13 @@ jobs:
         cd C:\local\ore
         mkdir build2
         cd build2
-        cmake  -G "Visual Studio 17 2022" -A x64 ..
+        cmake -DMSVC_LINK_DYNAMIC_RUNTIME=OFF -G "Visual Studio 17 2022" -A x64 ..
         cmake --build . --config Release --verbose
     - name: Unpack ORE-SWIG
       run: |
         Expand-Archive -Path oreswig.02.zip -DestinationPath .
 ###################################
-# prebuilt libs
+# prebuilt libs FIXME - change runtime from dynamic to static
 ###################################
 #    - name: Unpack ORE source
 #      run: |
@@ -45,6 +45,7 @@ jobs:
         BOOST_ROOT: C:\local\boost
         BOOST_LIB: C:\local\boost\lib64-msvc-14.3
         ORE_DIR: C:\local\ore
+        ORE_STATIC_RUNTIME: 1
         CIBW_SKIP: cp36-*
         CIBW_ARCHS_WINDOWS: AMD64
         CIBW_BUILD_VERBOSITY: 2
