@@ -12,16 +12,16 @@ jobs:
 #            platform: Win32
     steps:
     - uses: actions/checkout@v3
-    - name: Setup Boost
-      run: |
-        $Url = "https://boostorg.jfrog.io/artifactory/main/release/1.80.0/binaries/boost_1_80_0-msvc-14.3-64.exe"
-        (New-Object System.Net.WebClient).DownloadFile($Url, "$env:TEMP\boost.exe")
-        Start-Process -Wait -FilePath "$env:TEMP\boost.exe" "/SILENT","/SP-","/SUPPRESSMSGBOXES","/DIR=C:\local\boost"
 #    - name: Setup Boost
 #      run: |
-#        $Url = "https://boostorg.jfrog.io/artifactory/main/release/1.80.0/binaries/boost_1_80_0-msvc-14.3-32.exe"
+#        $Url = "https://boostorg.jfrog.io/artifactory/main/release/1.80.0/binaries/boost_1_80_0-msvc-14.3-64.exe"
 #        (New-Object System.Net.WebClient).DownloadFile($Url, "$env:TEMP\boost.exe")
 #        Start-Process -Wait -FilePath "$env:TEMP\boost.exe" "/SILENT","/SP-","/SUPPRESSMSGBOXES","/DIR=C:\local\boost"
+    - name: Setup Boost
+      run: |
+        $Url = "https://boostorg.jfrog.io/artifactory/main/release/1.80.0/binaries/boost_1_80_0-msvc-14.3-32.exe"
+        (New-Object System.Net.WebClient).DownloadFile($Url, "$env:TEMP\boost.exe")
+        Start-Process -Wait -FilePath "$env:TEMP\boost.exe" "/SILENT","/SP-","/SUPPRESSMSGBOXES","/DIR=C:\local\boost"
     - name: Build ORE
       env:
         Boost_ROOT: C:\local\boost
@@ -30,7 +30,7 @@ jobs:
         cd C:\local\ore
         mkdir build2
         cd build2
-        cmake  -G "Visual Studio 17 2022" -A x64 ..
+        cmake  -G "Visual Studio 17 2022" -A Win32 ..
         cmake --build . --config Release --verbose
 #    - name: Unpack ORE source
 #      run: |
