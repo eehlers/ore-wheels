@@ -46,7 +46,7 @@ jobs:
       uses: pypa/cibuildwheel@v2.11.1
       env:
         BOOST_ROOT: C:\local\boost
-        #BOOST_LIB: C:\local\boost\lib32-msvc-14.3
+        BOOST_LIB: C:\local\boost\lib32-msvc-14.3
         ORE_DIR: C:\local\ore
         ORE_STATIC_RUNTIME: 1
         CIBW_SKIP: cp36-*
