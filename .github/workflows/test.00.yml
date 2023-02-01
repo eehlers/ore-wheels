@@ -1,4 +1,4 @@
-name: Build Wheels 0 - cmake 32
+name: Build Wheels 00 - cmake 32
 on: workflow_dispatch
 jobs:
   wheels-windows:
@@ -28,7 +28,7 @@ jobs:
         cd C:\local\ore
         mkdir build2
         cd build2
-        cmake --DBUILD_DOC=OFF DMSVC_LINK_DYNAMIC_RUNTIME=OFF -G "Visual Studio 17 2022" -A Win32 ..
+        cmake -DBUILD_DOC=OFF -DMSVC_LINK_DYNAMIC_RUNTIME=OFF -G "Visual Studio 17 2022" -A Win32 ..
         cmake --build . --config Release --verbose
 ###################################
 # prebuilt libs FIXME - change runtime from dynamic to static, add 32 bit
