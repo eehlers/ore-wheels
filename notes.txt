@@ -1,0 +1,170 @@
+===============
+# make the source zip file
+
+# git bash
+git clone https://github.com/eehlers/Engine.git ore.eehlers.src
+cd ore.eehlers.src
+vi CMakeLists.txt -> include(CPack)
+git submodule init
+git submodule update
+
+# DOS
+cd C:\erik\ORE\repos\ore.eehlers.src
+mkdir build
+cd build
+"C:\Program Files\CMake\bin\cmake.exe" -G "Visual Studio 17 2022" -A x64 ..
+"C:\Program Files\CMake\bin\cpack.exe" --config CPackSourceConfig.cmake
+-> C:/erik/ORE/repos/ore.eehlers.src/build/ORE-0.1.1-Source.zip
+
+# make the source zip file #2
+cd C:\erik\ORE\repos\ore.eehlers
+python -m venv env1
+.\env1\Scripts\activate.bat
+pip install git-archive-all
+git-archive-all ore.zip
+cd ..\oreswig.eehlers
+git-archive-all oreswig.zip
+
+===============
+# simulate the job
+
+# build boost
+cd C:\local\boost_installers
+boost_1_80_0-msvc-14.3-32.exe /SILENT /SP- /SUPPRESSMSGBOXES /DIR=C:\local\boost
+boost_1_80_0-msvc-14.3-64.exe /SILENT /SP- /SUPPRESSMSGBOXES /DIR=C:\local\boost
+
+# build ore
+cd C:\local\ore
+mkdir build2
+cd build2
+SET BOOST_ROOT=C:\local\boost
+#SET LIBPATH=C:\local2\boost_wazoo\lib64-msvc-14.3_wazoo
+"C:\Program Files\CMake\bin\cmake.exe" -G "Visual Studio 17 2022" -A x64 ..
+"C:\Program Files\CMake\bin\cmake.exe" --build . --config Release
+
+"C:\Program Files\CMake\bin\cmake.exe" --build . --config Release --verbose
+"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_LIBRARY_PATH=C:\local2\boost_wazoo\lib64-msvc-14.3_wazoo --build . --config Release
+"C:\Program Files\CMake\bin\cmake.exe" --build . --config Release -- LIBPATH=C:\local2\boost_wazoo\lib64-msvc-14.3_wazoo
+"C:\Program Files\CMake\bin\cmake.exe" --help
+"C:\Program Files\CMake\bin\cmake.exe" --help-policy CMP0074
+"C:\Program Files\CMake\bin\cmake-gui.exe" ..
+
+# build oreswig
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
+cd C:\local\oreswig\OREAnalytics-SWIG\Python
+set BOOST_ROOT=C:\local\boost
+set BOOST_LIB=C:\local\boost\lib64-msvc-14.3
+set ORE_DIR=C:\local\ore
+set PATH=%PATH%;C:\erik\ORE\repos\swigwin-4.1.1
+python setup.py build
+python setup.py test
+#pip install build
+python -m build --wheel
+
+# OLD
+# copy props files
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
+msbuild ORE.sln -p:Configuration="Release" -p:Platform=x64
+
+=========
+upload
+C:\Users\eric.ehlers\.pypirc
+
+#python -m pip install --upgrade pip
+#python -m pip install --upgrade twine
+cd C:\erik\projects\wheel\wheels\20230102
+python -m twine upload --repository testpypi *.whl
+
+# install
+pip install -i https://test.pypi.org/simple/ OREAnalytics-Python==1.8.3.2
+
+===
+
+IDE Version	Compiler Version
+Visual Studio 2005	Visual C++ 8.0
+Visual Studio 2008	Visual C++ 9.0
+Visual Studio 2010	Visual C++ 10.0
+Visual Studio 2012	Visual C++ 11.0
+Visual Studio 2013	Visual C++ 12.0
+Visual Studio 2015	Visual C++ 14.0
+Visual Studio 2017	Visual C++ 14.1
+Visual Studio 2019	Visual C++ 14.2
+Visual Studio 2022	Visual C++ 14.3
+
+/MD, /MDd - dynamic runtime
+/MT, /MTd - static runtime
+
+boost_xxx is the import library for xxx.dll
+libboost_xxx is the static library
+
+cmake version = 3.25.1
+boost version = 1.81
+my cmake complains about boost version >= 1.81.0
+===
+
+BOOST_LIBRARYDIR
+
+CMake Warning (dev) at OREData/CMakeLists.txt:14 (find_package):
+  Policy CMP0074 is not set: find_package uses <PackageName>_ROOT variables.
+  Run "cmake --help-policy CMP0074" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+
+  Environment variable Boost_ROOT is set to:
+
+    C:\local\boost
+
+  For compatibility, CMake is ignoring the variable.
+
+######################################
+# ALTERNATE WAY TO BUILD SWIG WRAPPERS
+######################################
+
+# QuantExt-SWIG
+5.1 Use cmake to generate the project files
+
+cd %DEMO_ORE_SWIG_DIR%\buildQuantExt-SWIG
+"C:\Program Files\CMake\bin\cmake.exe" -G "Visual Studio 17 2022" ^
+-A x64 ^
+-D SWIG_DIR=%DEMO_SWIG_DIR%\Lib ^
+-D SWIG_EXECUTABLE=%DEMO_SWIG_DIR%\swig.exe ^
+-D ORE:PATHNAME=%DEMO_ORE_DIR% ^
+-D BOOST_ROOT=%DEMO_BOOST_DIR% ^
+-S %DEMO_ORE_SWIG_DIR%\QuantExt-SWIG\Python
+-> %DEMO_ORE_SWIG_DIR%\buildQuantExt-SWIG\QuantExt-Python.sln
+
+5.1.1 EITHER Build the pyd file using Visual Studio
+
+%DEMO_ORE_SWIG_DIR%\buildQuantExt-SWIG\QuantExt-Python.sln
+-> %DEMO_ORE_SWIG_DIR%\buildQuantExt-SWIG\Release\_QuantExt.pyd
+
+5.1.2 OR Build the pyd file using cmake
+
+cd %DEMO_ORE_SWIG_DIR%\buildQuantExt-SWIG
+"C:\Program Files\CMake\bin\cmake.exe" --build . --config Release
+-> %DEMO_ORE_SWIG_DIR%\buildQuantExt-SWIG\Release\_QuantExt.pyd
+
+# ORE-SWIG
+3.1 Use cmake to generate the project files
+
+cd %DEMO_ORE_SWIG_DIR%
+mkdir buildOREAnalytics-SWIG
+cd %DEMO_ORE_SWIG_DIR%\buildOREAnalytics-SWIG
+"C:\Program Files\CMake\bin\cmake.exe" -G "Visual Studio 17 2022" ^
+-A x64 ^
+-D SWIG_DIR=%DEMO_SWIG_DIR%\Lib ^
+-D SWIG_EXECUTABLE=%DEMO_SWIG_DIR%\swig.exe ^
+-D ORE:PATHNAME=%DEMO_ORE_DIR% ^
+-D BOOST_ROOT=%DEMO_BOOST_DIR% ^
+-S %DEMO_ORE_SWIG_DIR%\OREAnalytics-SWIG\Python
+-> %DEMO_ORE_SWIG_DIR%\buildOREAnalytics-SWIG\OREAnalytics-Python.sln
+
+3.1.1 EITHER Build the pyd file using Visual Studio
+
+%DEMO_ORE_SWIG_DIR%\buildOREAnalytics-SWIG\OREAnalytics-Python.sln
+-> %DEMO_ORE_SWIG_DIR%\buildOREAnalytics-SWIG\Release\_OREAnalytics.pyd
+
+3.1.2 OR Build the pyd file using cmake
+
+cd %DEMO_ORE_SWIG_DIR%\buildOREAnalytics-SWIG
+"C:\Program Files\CMake\bin\cmake.exe" --build . --config Release
+-> %DEMO_ORE_SWIG_DIR%\buildOREAnalytics-SWIG\Release\_OREAnalytics.pyd
