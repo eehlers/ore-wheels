@@ -1,4 +1,4 @@
-name: Build Wheels 01 - Windows - cmake x64
+name: Build 01 - Windows - cmake x64
 on: workflow_dispatch
 jobs:
   wheels-windows:

@@ -1,4 +1,4 @@
-name: Build Wheels 10 - Windows - msbuild x64
+name: Build 10 - Windows - msbuild x64
 on: workflow_dispatch
 jobs:
   wheels-windows:
