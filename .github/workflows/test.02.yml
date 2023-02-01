@@ -1,17 +1,24 @@
-name: Build Wheels 0 - cmake 32
+name: Build Wheels 2 - cmake 32 & 64
 on: workflow_dispatch
 jobs:
   wheels-windows:
     runs-on: windows-2022
+    strategy:
+      matrix:
+        include:
+          - arch: AMD64
+            platform: x64
+            boost-lib: C:\local\boost\lib64-msvc-14.3
+          - arch: x86
+            platform: Win32
+            boost-lib: C:\local\boost\lib32-msvc-14.3
     steps:
     - uses: actions/checkout@v3
-    # cmake build requires 32 bit boost
     - name: Setup Boost 32 bit
       run: |
         $Url = "https://boostorg.jfrog.io/artifactory/main/release/1.80.0/binaries/boost_1_80_0-msvc-14.3-32.exe"
         (New-Object System.Net.WebClient).DownloadFile($Url, "$env:TEMP\boost.exe")
         Start-Process -Wait -FilePath "$env:TEMP\boost.exe" "/SILENT","/SP-","/SUPPRESSMSGBOXES","/DIR=C:\local\boost"
-    # cibuildwheel requires 64 bit boost
     - name: Setup Boost 64 bit
       run: |
         $Url = "https://boostorg.jfrog.io/artifactory/main/release/1.80.0/binaries/boost_1_80_0-msvc-14.3-64.exe"
@@ -28,8 +35,11 @@ jobs:
         cd C:\local\ore
         mkdir build2
         cd build2
-        cmake --DBUILD_DOC=OFF DMSVC_LINK_DYNAMIC_RUNTIME=OFF -G "Visual Studio 17 2022" -A Win32 ..
+        cmake -DBUILD_DOC=OFF -DMSVC_LINK_DYNAMIC_RUNTIME=OFF -G "Visual Studio 17 2022" -A ${{ matrix.platform }} ..
         cmake --build . --config Release --verbose
+    - name: Unpack ORE-SWIG
+      run: |
+        Expand-Archive -Path oreswig.02.zip -DestinationPath .
 ###################################
 # prebuilt libs FIXME - change runtime from dynamic to static, add 32 bit
 ###################################
@@ -39,23 +49,24 @@ jobs:
 #    - name: Unpack ORE libs
 #      run: |
 #        Expand-Archive -Path ore.01.zip -DestinationPath C:\local
-    - name: Unpack ORE-SWIG
-      run: |
-        Expand-Archive -Path oreswig.02.zip -DestinationPath .
+#    - name: Unpack ORE-SWIG
+#      run: |
+#        Expand-Archive -Path oreswig.01.zip -DestinationPath .
+###################################
     - name: Build ORE wheels
       uses: pypa/cibuildwheel@v2.11.1
       env:
         BOOST_ROOT: C:\local\boost
-        #BOOST_LIB: C:\local\boost\lib32-msvc-14.3
+        BOOST_LIB: ${{ matrix.boost-lib }}
         ORE_DIR: C:\local\ore
         ORE_STATIC_RUNTIME: 1
         CIBW_SKIP: cp36-*
-        CIBW_ARCHS_WINDOWS: x86
+        CIBW_ARCHS_WINDOWS: ${{ matrix.arch }}
         CIBW_BUILD_VERBOSITY: 2
       with:
         package-dir: oreswig/OREAnalytics-SWIG/Python
     - name: Save wheels as artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: wheels-windows-Win32
+        name: wheels-windows-${{ matrix.arch }}
         path: ./wheelhouse/*.whl
