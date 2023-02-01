@@ -16,7 +16,7 @@ cd build
 "C:\Program Files\CMake\bin\cpack.exe" --config CPackSourceConfig.cmake
 -> C:/erik/ORE/repos/ore.eehlers.src/build/ORE-0.1.1-Source.zip
 
-# make the source zip file #2
+# make the source zip file #2 - windows
 cd C:\erik\ORE\repos\ore.eehlers
 python -m venv env1
 .\env1\Scripts\activate.bat
@@ -24,6 +24,15 @@ pip install git-archive-all
 git-archive-all ore.zip
 cd ..\oreswig.eehlers
 git-archive-all oreswig.zip
+
+# make the source zip file #2 - linux
+cd /home/erik/quaternion/ore.eehlers
+python3 -m venv env1
+. env1/bin/activate
+pip install git-archive-all
+git-archive-all ore.tgz
+cd ../oreswig.eehlers
+git-archive-all oreswig.tgz
 
 ===============
 # simulate the job
