@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+echo "BOOST_ROOT=$BOOST_ROOT"
 
 # Setup Boost
 #curl -O -L https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.gz
@@ -18,6 +19,6 @@ tar xfz oreswig.01.tgz
 cd ore
 mkdir build
 cd build
-cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DBUILD_DOC=OFF -DBoost_NO_WARN_NEW_VERSIONS=1 -DBoost_NO_SYSTEM_PATHS=1 -DBOOST_ROOT=$BOOST_ROOT ..
+cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DBUILD_DOC=OFF -DBoost_NO_WARN_NEW_VERSIONS=1 -DBoost_NO_SYSTEM_PATHS=1 -DBOOST_ROOT=/home/runner/work/ore-wheels/ore-wheels/boost/boost ..
 cmake --build .
 
