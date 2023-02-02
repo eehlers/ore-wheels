@@ -17,7 +17,8 @@ jobs:
     - name: Build ORE wheels
       uses: pypa/cibuildwheel@v2.11.1
       env:
-        CIBW_BUILD: "*-${{ matrix.image }}*"
+        #CIBW_BUILD: "*-${{ matrix.image }}*"
+        CIBW_BUILD: "*-manylinux*"
         CIBW_SKIP: cp36-*
         #CIBW_ARCHS_LINUX: ${{ matrix.arch }}
         CIBW_ARCHS_LINUX: x86_64
