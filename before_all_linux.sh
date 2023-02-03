@@ -16,12 +16,13 @@ BOOST_ROOT=/home/runner/work/ore-wheels/ore-wheels/boost/boost
 tar xfz ore.00.tgz
 tar xfz oreswig.01.tgz
 cp setup.py oreswig/OREAnalytics-SWIG/Python
+find . -name version.hpp
 
-# Build ORE
-cd ore
-mkdir build
-cd build
-#cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DBUILD_DOC=OFF -DBoost_NO_WARN_NEW_VERSIONS=1 -DBoost_NO_SYSTEM_PATHS=1 -DBOOST_ROOT=/home/runner/work/ore-wheels/ore-wheels/boost/boost ..
-cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DBUILD_DOC=OFF -DBoost_NO_WARN_NEW_VERSIONS=1 -DBoost_NO_SYSTEM_PATHS=1 ..
-cmake --build .
+## Build ORE
+#cd ore
+#mkdir build
+#cd build
+##cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DBUILD_DOC=OFF -DBoost_NO_WARN_NEW_VERSIONS=1 -DBoost_NO_SYSTEM_PATHS=1 -DBOOST_ROOT=/home/runner/work/ore-wheels/ore-wheels/boost/boost ..
+#cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DBUILD_DOC=OFF -DBoost_NO_WARN_NEW_VERSIONS=1 -DBoost_NO_SYSTEM_PATHS=1 ..
+#cmake --build .
 
