@@ -9,8 +9,11 @@ jobs:
       env:
         VAR1: VAL1
         VAR2: VAL2
+        VAR3: {package}
       run: |
+        pwd
         echo "01 VAR1=$VAR1"
         echo "02 VAR2=$VAR2"
+        echo "03 VAR3=$VAR3"
         export VAR2
         ./test1.sh
