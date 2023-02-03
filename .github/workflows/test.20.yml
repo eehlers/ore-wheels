@@ -16,8 +16,11 @@ jobs:
       with:
         boost_version: 1.80.0
     - name: Unpack ORE and ORE-SWIG
+      env:
+        FOO: $BOOST_ROOT
       run: |
-        echo $BOOST_ROOT
+        echo "00 BOOST_ROOT=$BOOST_ROOT"
+        echo "01 BOOST_ROOT=$FOO"
         export BOOST_ROOT=$BOOST_ROOT
         ./before_all_linux.sh
 #        tar xfz ore.00.tgz

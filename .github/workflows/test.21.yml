@@ -1,0 +1,16 @@
+name: Build 21 - Linux - test
+on: workflow_dispatch
+jobs:
+  wheels-linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Test1
+      env:
+        VAR1: VAL1
+        VAR2: VAL2
+      run: |
+        echo "01 VAR1=$VAR1"
+        echo "02 VAR2=$VAR2"
+        export VAR2
+        ./test1.sh
