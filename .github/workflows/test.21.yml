@@ -7,11 +7,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Test1
       env:
-        VAR1: VAL1
-        VAR2: VAL2
+        ORE: /home/runner/work/ore-wheels/ore-wheels/ore
       run: |
         pwd
-        echo "01 VAR1=$VAR1"
-        echo "02 VAR2=$VAR2"
-        export VAR2
-        ./test1.sh
+        echo "01 ORE=$ORE"
+        python test1.py
