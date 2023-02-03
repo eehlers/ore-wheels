@@ -17,6 +17,8 @@ tar xfz ore.00.tgz
 tar xfz oreswig.01.tgz
 cp setup.py oreswig/OREAnalytics-SWIG/Python
 find . -name version.hpp
+pwd
+file /home/runner/work/ore-wheels/ore-wheels/ore/QuantExt/ore/version.hpp
 
 ## Build ORE
 #cd ore
