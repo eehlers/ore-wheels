@@ -10,11 +10,11 @@ jobs:
 #        image: [manylinux, musllinux]
     steps:
     - uses: actions/checkout@v3
-#    - name: Install boost
-#      uses: MarkusJx/install-boost@v2.4.1
-#      id: install-boost
-#      with:
-#        boost_version: 1.80.0
+    - name: Install boost
+      uses: MarkusJx/install-boost@v2.4.1
+      id: install-boost
+      with:
+        boost_version: 1.80.0
     - name: Unpack ORE and ORE-SWIG
       env:
         BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
@@ -23,30 +23,30 @@ jobs:
         ./before_all_linux.sh
         #tar xfz ore.00.tgz
         #tar xfz oreswig.01.tgz
-#    - name: Build ORE wheels
-#      uses: pypa/cibuildwheel@v2.11.1
-#      env:
-#        #BOOST_ROOT: C:\local\boost
-#        #BOOST_LIB: C:\local\boost\lib64-msvc-14.3
-#        #BOOST: $BOOST_ROOT
-#        BOOST: ${{ steps.install-boost.outputs.BOOST_ROOT }}
-#        ORE: /home/runner/work/ore-wheels/ore-wheels/ore
-#        #CIBW_BUILD: "*-${{ matrix.image }}*"
-#        CIBW_BUILD: "*-manylinux*"
-#        CIBW_SKIP: cp36-*
-#        #CIBW_ARCHS_LINUX: ${{ matrix.arch }}
-#        CIBW_ARCHS_LINUX: x86_64
-#        CIBW_BUILD_VERBOSITY: 2
-#        #CIBW_BEFORE_ALL_LINUX: ./before_all_linux.sh
-#        #CIBW_ENVIRONMENT_LINUX: CXXFLAGS=${{ matrix.arch == 'x86_64' && '"-O3 -g0"' || '"-O1 -g0"' }}
-#        CIBW_ENVIRONMENT_LINUX: CXXFLAGS="-O3 -g0"
-#        CIBW_ENVIRONMENT_PASS_LINUX: CXXFLAGS
-#      with:
-#        #package-dir: {package}/oreswig/OREAnalytics-SWIG/Python
-#        package-dir: /home/runner/work/ore-wheels/ore-wheels/oreswig/OREAnalytics-SWIG/Python
-#    - name: Save wheels as artifacts
-#      uses: actions/upload-artifact@v3
-#      with:
-#        #name: wheels-linux-${{ matrix.image }}-${{ matrix.arch }}
-#        name: wheels-linux-manylinux-x86_64
-#        path: ./wheelhouse/*.whl
+    - name: Build ORE wheels
+      uses: pypa/cibuildwheel@v2.11.1
+      env:
+        #BOOST_ROOT: C:\local\boost
+        #BOOST_LIB: C:\local\boost\lib64-msvc-14.3
+        #BOOST: $BOOST_ROOT
+        BOOST: ${{ steps.install-boost.outputs.BOOST_ROOT }}
+        ORE: /home/runner/work/ore-wheels/ore-wheels/ore
+        #CIBW_BUILD: "*-${{ matrix.image }}*"
+        CIBW_BUILD: "*-manylinux*"
+        CIBW_SKIP: cp36-*
+        #CIBW_ARCHS_LINUX: ${{ matrix.arch }}
+        CIBW_ARCHS_LINUX: x86_64
+        CIBW_BUILD_VERBOSITY: 2
+        CIBW_BEFORE_ALL_LINUX: ./before_all_linux2.sh
+        #CIBW_ENVIRONMENT_LINUX: CXXFLAGS=${{ matrix.arch == 'x86_64' && '"-O3 -g0"' || '"-O1 -g0"' }}
+        CIBW_ENVIRONMENT_LINUX: CXXFLAGS="-O3 -g0"
+        CIBW_ENVIRONMENT_PASS_LINUX: CXXFLAGS
+      with:
+        #package-dir: {package}/oreswig/OREAnalytics-SWIG/Python
+        package-dir: /home/runner/work/ore-wheels/ore-wheels/oreswig/OREAnalytics-SWIG/Python
+    - name: Save wheels as artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        #name: wheels-linux-${{ matrix.image }}-${{ matrix.arch }}
+        name: wheels-linux-manylinux-x86_64
+        path: ./wheelhouse/*.whl
