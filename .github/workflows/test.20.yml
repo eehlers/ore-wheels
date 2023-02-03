@@ -17,7 +17,7 @@ jobs:
         boost_version: 1.80.0
     - name: Unpack ORE and ORE-SWIG
       env:
-        FOO: $BOOST_ROOT
+        BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
       run: |
         echo "00 BOOST_ROOT=$BOOST_ROOT"
         echo "01 BOOST_ROOT=$FOO"
