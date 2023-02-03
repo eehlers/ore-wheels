@@ -183,6 +183,7 @@ class my_build_ext(build_ext):
             #os.chdir('..')
             print("####################################################")
             print("####################################################")
+            os.environ['ORE']='/home/runner/work/ore-wheels/ore-wheels/ore'
             ORE=os.environ['ORE']
             print(f'ORE={ORE}')
             ql_compile_args = \
