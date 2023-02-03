@@ -19,9 +19,7 @@ jobs:
       env:
         BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
       run: |
-        echo "00 BOOST_ROOT=$BOOST_ROOT"
-        echo "01 BOOST_ROOT=$FOO"
-        export BOOST_ROOT=$BOOST_ROOT
+        echo "01 BOOST_ROOT=$BOOST_ROOT"
         ./before_all_linux.sh
 #        tar xfz ore.00.tgz
 #        tar xfz oreswig.01.tgz
