@@ -17,9 +17,11 @@ jobs:
         boost_version: 1.80.0
     - name: Unpack ORE and ORE-SWIG
       env:
-        BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
+        FOO: $BOOST_ROOT
       run: |
-        echo "01 BOOST_ROOT=$BOOST_ROOT"
+        echo "00 BOOST_ROOT=$BOOST_ROOT"
+        echo "01 BOOST_ROOT=$FOO"
+        export BOOST_ROOT=$BOOST_ROOT
         ./before_all_linux.sh
 #        tar xfz ore.00.tgz
 #        tar xfz oreswig.01.tgz
@@ -29,10 +31,9 @@ jobs:
         #BOOST_ROOT: C:\local\boost
         #BOOST_LIB: C:\local\boost\lib64-msvc-14.3
         #BOOST: $BOOST_ROOT
-        BOOST: ${{ steps.install-boost.outputs.BOOST_ROOT }}
-        ORE: /home/runner/work/ore-wheels/ore-wheels/ore
+        ORE: /ore
         #CIBW_BUILD: "*-${{ matrix.image }}*"
-        CIBW_BUILD: *-manylinux*
+        CIBW_BUILD: "*-manylinux*"
         CIBW_SKIP: cp36-*
         #CIBW_ARCHS_LINUX: ${{ matrix.arch }}
         CIBW_ARCHS_LINUX: x86_64
@@ -42,8 +43,7 @@ jobs:
         CIBW_ENVIRONMENT_LINUX: CXXFLAGS="-O3 -g0"
         CIBW_ENVIRONMENT_PASS_LINUX: CXXFLAGS
       with:
-        #package-dir: {package}/oreswig/OREAnalytics-SWIG/Python
-        package-dir: /home/runner/work/ore-wheels/ore-wheels/oreswig/OREAnalytics-SWIG/Python
+        package-dir: /oreswig/OREAnalytics-SWIG/Python
     - name: Save wheels as artifacts
       uses: actions/upload-artifact@v3
       with:
