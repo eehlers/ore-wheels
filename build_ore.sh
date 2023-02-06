@@ -2,6 +2,7 @@
 set -e
 echo "02 BOOST_ROOT=$BOOST_ROOT"
 BOOST_ROOT=/home/runner/work/ore-wheels/ore-wheels/boost/boost
+find $BOOST_ROOT -name libboost_filesystem.so
 
 # Setup Boost
 #curl -O -L https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.gz
