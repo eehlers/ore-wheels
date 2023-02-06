@@ -20,7 +20,7 @@ jobs:
         BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
       run: |
         echo "01 BOOST_ROOT=$BOOST_ROOT"
-        ./before_all_linux.sh
+        ./build_ore.sh
         #tar xfz ore.00.tgz
         #tar xfz oreswig.01.tgz
     - name: Build ORE wheels
@@ -37,7 +37,7 @@ jobs:
         #CIBW_ARCHS_LINUX: ${{ matrix.arch }}
         CIBW_ARCHS_LINUX: x86_64
         CIBW_BUILD_VERBOSITY: 2
-        CIBW_BEFORE_ALL_LINUX: ./before_all_linux2.sh
+        CIBW_BEFORE_ALL_LINUX: ./before_all_linux.sh
         #CIBW_ENVIRONMENT_LINUX: CXXFLAGS=${{ matrix.arch == 'x86_64' && '"-O3 -g0"' || '"-O1 -g0"' }}
         CIBW_ENVIRONMENT_LINUX: CXXFLAGS="-O3 -g0"
         CIBW_ENVIRONMENT_PASS_LINUX: CXXFLAGS
