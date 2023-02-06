@@ -16,6 +16,7 @@ BOOST_ROOT=/home/runner/work/ore-wheels/ore-wheels/boost/boost
 tar xfz ore.00.tgz
 tar xfz oreswig.01.tgz
 cp setup.py oreswig/OREAnalytics-SWIG/Python
+cp oreanalytics-config oreswig/OREAnalytics-SWIG
 pwd
 find . -name version.hpp
 file /home/runner/work/ore-wheels/ore-wheels/ore/QuantExt/qle/version.hpp
