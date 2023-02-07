@@ -12,8 +12,8 @@ cd boost_1_80_0
 ./bootstrap.sh --prefix=/home/runner/work/ore-wheels/ore-wheels/boost
 ./b2 install
 cd ..
-pwd
-find /home/runner/work/ore-wheels/ore-wheels/boost
+ls -l /home/runner/work/ore-wheels/ore-wheels/boost/lib
+#find /home/runner/work/ore-wheels/ore-wheels/boost
 #find /usr/local
 
 # Unpack ORE & ORE-SWIG
@@ -26,7 +26,7 @@ cp oreanalytics-config.22 oreswig/OREAnalytics-SWIG/oreanalytics-config
 cd ore
 mkdir build
 cd build
-cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DBUILD_DOC=OFF -DBoost_NO_WARN_NEW_VERSIONS=1 -DBoost_NO_SYSTEM_PATHS=1 ..
+cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DBUILD_DOC=OFF -DBoost_NO_WARN_NEW_VERSIONS=1 -DBoost_NO_SYSTEM_PATHS=1 -DBOOST_ROOT=/home/runner/work/ore-wheels/ore-wheels/boost ..
 cmake --build .
 
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
