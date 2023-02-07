@@ -1,0 +1,43 @@
+name: Build 30 - MacOS
+on: workflow_dispatch
+jobs:
+  wheels-macos:
+    runs-on: macos-11
+    #strategy:
+    #  fail-fast: false
+    #  matrix:
+    #    arch: [x86_64, arm64]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup
+      run: |
+        brew install boost
+    - name: Build ORE
+      run: |
+        pwd
+        tar xfz ore.00.tgz
+        tar xfz oreswig.01.tgz
+        cp setup.30.py oreswig/OREAnalytics-SWIG/Python/setup.py
+        cp oreanalytics-config.30 oreswig/OREAnalytics-SWIG/oreanalytics-config
+        cd ore
+        mkdir build
+        cd build
+        cmake -DBUILD_DOC=OFF ..
+        cmake --build .
+        find . -name setup.py
+    - name: Build ORE wheels
+      uses: pypa/cibuildwheel@v2.11.1
+      env:
+        CIBW_SKIP: cp36-*
+        #CIBW_ARCHS_MACOS: ${{ matrix.arch }}
+        CIBW_ARCHS_MACOS: x86_64
+        CXXFLAGS: -std=c++14 -g0 -O3
+        CIBW_BUILD_VERBOSITY: 2
+      with:
+        package-dir: /home/runner/work/ore-wheels/ore-wheels/oreswig/OREAnalytics-SWIG/Python
+    - name: Save wheels as artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        #name: wheels-macos-${{ matrix.arch }}
+        name: wheels-macos-x86_64
+        path: ./wheelhouse/*.whl
