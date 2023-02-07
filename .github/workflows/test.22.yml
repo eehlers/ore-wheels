@@ -3,18 +3,8 @@ on: workflow_dispatch
 jobs:
   wheels-linux:
     runs-on: ubuntu-latest
-#    strategy:
-#      fail-fast: false
-#      matrix:
-#        arch: [x86_64, i686]
-#        image: [manylinux, musllinux]
     steps:
     - uses: actions/checkout@v3
-    - name: Install boost
-      uses: MarkusJx/install-boost@v2.4.1
-      id: install-boost
-      with:
-        boost_version: 1.80.0
     - name: Unpack ORE and ORE-SWIG
       env:
         BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
