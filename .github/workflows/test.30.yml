@@ -34,7 +34,7 @@ jobs:
         CXXFLAGS: -std=c++14 -g0 -O3
         CIBW_BUILD_VERBOSITY: 2
       with:
-        package-dir: /home/runner/work/ore-wheels/ore-wheels/oreswig/OREAnalytics-SWIG/Python
+        package-dir: oreswig/OREAnalytics-SWIG/Python
     - name: Save wheels as artifacts
       uses: actions/upload-artifact@v3
       with:
