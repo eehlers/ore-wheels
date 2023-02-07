@@ -8,18 +8,13 @@ echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 # Setup Boost
 curl -O -L https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.gz
 tar xfz boost_1_80_0.tar.gz
-cd boost_1_80_0/tools/build
-./bootstrap.sh
-./b2 install --prefix=/home/runner/work/ore-wheels/ore-wheels/boost
-cd ../..
-b2 toolset=gcc stage
-pwd
-find .
-#find /home/runner/work/ore-wheels/ore-wheels/boost
-#find /usr/local
+cd boost_1_80_0
+./bootstrap.sh --prefix=/home/runner/work/ore-wheels/ore-wheels/boost
+./b2 install
 cd ..
-
-#apt-get install libboost-all-dev
+pwd
+find /home/runner/work/ore-wheels/ore-wheels/boost
+#find /usr/local
 
 # Unpack ORE & ORE-SWIG
 tar xfz ore.00.tgz
