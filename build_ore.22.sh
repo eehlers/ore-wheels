@@ -6,14 +6,14 @@ pwd
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 
 # Setup Boost
-#curl -O -L https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.gz
-#tar xfz boost_1_80_0.tar.gz
-#cd boost_1_80_0/tools/build
-#./bootstrap.sh
-#./b2 install
-#cd ../../..
+curl -O -L https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.gz
+tar xfz boost_1_80_0.tar.gz
+cd boost_1_80_0/tools/build
+./bootstrap.sh
+./b2 install
+cd ../../..
 
-apt-get install libboost-all-dev
+#apt-get install libboost-all-dev
 
 # Unpack ORE & ORE-SWIG
 tar xfz ore.00.tgz
