@@ -28,7 +28,7 @@ cd ore
 mkdir build
 cd build
 cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DBUILD_DOC=OFF ..
-cmake --build .
+cmake --install .
 
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo "pwd"
