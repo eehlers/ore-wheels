@@ -8,14 +8,13 @@ pwd
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 
 # Setup Boost
-echo apt-get install libboost-all-dev
-apt-get install libboost-all-dev
-#curl -O -L https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.gz
-#tar xfz boost_1_80_0.tar.gz
-#cd boost_1_80_0
+curl -O -L https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.gz
+tar xfz boost_1_80_0.tar.gz
+cd boost_1_80_0
 #./bootstrap.sh --prefix=/home/runner/work/ore-wheels/ore-wheels/boost
-#./b2 install
-#cd ..
+./bootstrap.sh
+./b2 install
+cd ..
 #ls -l /home/runner/work/ore-wheels/ore-wheels/boost/lib
 
 ## Unpack ORE & ORE-SWIG
@@ -25,11 +24,11 @@ apt-get install libboost-all-dev
 #cp oreanalytics-config.22 oreswig/OREAnalytics-SWIG/oreanalytics-config
 
 # Build ORE
-cd ore
-mkdir build
-cd build
-cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DBUILD_DOC=OFF -DBoost_NO_WARN_NEW_VERSIONS=1 -DBoost_NO_SYSTEM_PATHS=1 -DBOOST_ROOT=/home/runner/work/ore-wheels/ore-wheels/boost ..
-cmake --build .
+#cd ore
+#mkdir build
+#cd build
+#cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DBUILD_DOC=OFF -DBoost_NO_WARN_NEW_VERSIONS=1 -DBoost_NO_SYSTEM_PATHS=1 -DBOOST_ROOT=/home/runner/work/ore-wheels/ore-wheels/boost ..
+#cmake --build .
 
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo "pwd"
