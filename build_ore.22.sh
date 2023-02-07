@@ -10,11 +10,11 @@ curl -O -L https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boos
 tar xfz boost_1_80_0.tar.gz
 cd boost_1_80_0/tools/build
 ./bootstrap.sh
-#./b2 install --prefix=/home/runner/work/ore-wheels/ore-wheels/boost
-./b2 install --prefix=/usr/local
+./b2 install --prefix=/home/runner/work/ore-wheels/ore-wheels/boost
+#./b2 install --prefix=/usr/local
 cd ../../..
-#find /home/runner/work/ore-wheels/ore-wheels/boost
-find /usr/local
+find /home/runner/work/ore-wheels/ore-wheels/boost
+#find /usr/local
 
 #apt-get install libboost-all-dev
 
