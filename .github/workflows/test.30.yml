@@ -25,8 +25,6 @@ jobs:
         cmake -DBUILD_DOC=OFF ..
         cmake --build .
         cmake --install .
-        echo "find / -name setup.py"
-        find / -name setup.py
     - name: Build ORE wheels
       uses: pypa/cibuildwheel@v2.11.1
       env:
