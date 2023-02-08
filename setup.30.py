@@ -183,13 +183,12 @@ class my_build_ext(build_ext):
             #os.chdir('..')
             print("####################################################")
             print("####################################################")
-            #os.environ['ORE']='/home/runner/work/ore-wheels/ore-wheels/ore'
-            os.environ['ORE']='/project/ore'
-            ORE=os.environ['ORE']
-            print(f'ORE={ORE}')
-            os.environ['BOOST']='/project/boost'
-            BOOST=os.environ['BOOST']
-            print(f'BOOST={BOOST}')
+            #os.environ['ORE']='/project/ore'
+            #ORE=os.environ['ORE']
+            #print(f'ORE={ORE}')
+            #os.environ['BOOST']='/project/boost'
+            #BOOST=os.environ['BOOST']
+            #print(f'BOOST={BOOST}')
             ql_compile_args = \
                 os.popen('../oreanalytics-config --cflags').read()[:-1].split()
             print('ql_compile_args={}'.format(ql_compile_args))
