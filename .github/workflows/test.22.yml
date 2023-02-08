@@ -20,8 +20,12 @@ jobs:
         BOOST: ${{ steps.install-boost.outputs.BOOST_ROOT }}
         ORE: /home/runner/work/ore-wheels/ore-wheels/ore
         #CIBW_BUILD: "*-${{ matrix.image }}*"
-        CIBW_BUILD: "*-manylinux*"
-        CIBW_SKIP: cp36-*
+        #CIBW_BUILD: "*-manylinux*"
+        #CIBW_SKIP: cp36-*
+        #CIBW_BUILD: cp37-manylinux_x86_64
+        #CIBW_BUILD: cp38-manylinux_x86_64
+        #CIBW_BUILD: cp39-manylinux_x86_64
+        CIBW_BUILD: cp310-manylinux_x86_64
         #CIBW_ARCHS_LINUX: ${{ matrix.arch }}
         CIBW_ARCHS_LINUX: x86_64
         CIBW_BUILD_VERBOSITY: 2
