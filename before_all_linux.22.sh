@@ -11,7 +11,7 @@ echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 curl -O -L https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.gz
 tar xfz boost_1_80_0.tar.gz
 cd boost_1_80_0
-./bootstrap.sh --with-libraries=date_time,filesystem,regex,serialization,system,thread
+./bootstrap.sh --with-libraries=date_time,filesystem,regex,serialization,system,thread,timer,unit_test_framework
 ./b2 install
 cd ..
 #ls -l /home/runner/work/ore-wheels/ore-wheels/boost/lib
