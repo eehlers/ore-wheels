@@ -14,14 +14,16 @@ jobs:
       id: install-boost
       with:
         boost_version: 1.80.0
-        arch: x86
+        arch: arm64
     - name: Setup
       env:
         BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
       run: |
         echo "01 BOOST_ROOT=$BOOST_ROOT"
-        echo "ls -l /Users/runner/work/ore-wheels/ore-wheels"
-        ls -l /Users/runner/work/ore-wheels/ore-wheels
+        echo "ls -l /Users/runner/work/ore-wheels/ore-wheels/boost"
+        ls -l /Users/runner/work/ore-wheels/ore-wheels/boost
+        echo "ls -l /Users/runner/work/ore-wheels/ore-wheels/boost/boost"
+        ls -l /Users/runner/work/ore-wheels/ore-wheels/boost/boost
 #    - name: Build ORE
 #      run: |
 #        pwd
