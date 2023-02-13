@@ -11,10 +11,6 @@ jobs:
     - uses: actions/checkout@v3
     - name: Setup
       run: |
-#        brew install boost
-#        cd /usr/local/lib
-#        ln -s libboost_thread-mt.dylib libboost_thread.dylib
-#        ln -s libboost_thread-mt.a libboost_thread.a
         echo "ls -l /usr/local"
         ls -l /usr/local
         echo "ls -l /usr/local/lib"
