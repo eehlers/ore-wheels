@@ -9,6 +9,11 @@ jobs:
     #    arch: [x86_64, arm64]
     steps:
     - uses: actions/checkout@v3
+    - name: Install boost
+      uses: MarkusJx/install-boost@v2.4.1
+      id: install-boost
+      with:
+        boost_version: 1.80.0
     - name: Setup
       run: |
         echo "ls -l /usr/local"
