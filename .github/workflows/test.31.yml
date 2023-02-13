@@ -50,6 +50,5 @@ jobs:
     - name: Save wheels as artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: wheels-macos-${{ matrix.arch }}
         name: wheels-macos-arm64
         path: ./wheelhouse/*.whl
