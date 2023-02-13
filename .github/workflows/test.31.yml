@@ -10,8 +10,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Setup
-      env:
-        BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
       run: |
         curl -O -L https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.gz
         tar xfz boost_1_80_0.tar.gz
@@ -37,10 +35,6 @@ jobs:
         cmake -DBUILD_DOC=OFF -DCMAKE_OSX_ARCHITECTURES=arm64 ..
         cmake --build .
         cmake --install .
-        echo "ls -l /usr/local/lib"
-        ls -l /usr/local/lib
-        echo "find /usr/local -name version.hpp"
-        find /usr/local -name version.hpp
     - name: Build ORE wheels
       uses: pypa/cibuildwheel@v2.11.1
       env:
