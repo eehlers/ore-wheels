@@ -14,6 +14,7 @@ jobs:
       id: install-boost
       with:
         boost_version: 1.80.0
+        arch: x86
     - name: Setup
       run: |
         echo "ls -l /usr/local"
