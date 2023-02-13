@@ -9,21 +9,19 @@ jobs:
     #    arch: [x86_64, arm64]
     steps:
     - uses: actions/checkout@v3
-    - name: Install boost
-      uses: MarkusJx/install-boost@v2.4.1
-      id: install-boost
-      with:
-        boost_version: 1.80.0
-        arch: aarch64
     - name: Setup
       env:
         BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
       run: |
-        echo "01 BOOST_ROOT=$BOOST_ROOT"
-        echo "ls -l /Users/runner/work/ore-wheels/ore-wheels/boost"
-        ls -l /Users/runner/work/ore-wheels/ore-wheels/boost
-        echo "ls -l /Users/runner/work/ore-wheels/ore-wheels/boost/boost"
-        ls -l /Users/runner/work/ore-wheels/ore-wheels/boost/boost
+        curl -O -L https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.gz
+        tar xfz boost_1_80_0.tar.gz
+        cd boost_1_80_0
+        ./bootstrap.sh
+        ./b2 architecture=arm address-model=64 -s NO_LZMA=1 -s NO_ZSTD=1 abi=aapcs install
+        echo "ls -l /usr/local"
+        ls -l /usr/local
+        echo "ls -l /usr/local/lib"
+        ls -l /usr/local/lib
 #    - name: Build ORE
 #      run: |
 #        pwd
