@@ -16,11 +16,16 @@ jobs:
         boost_version: 1.80.0
         arch: x86
     - name: Setup
+      env:
+        BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
       run: |
-        echo "ls -l /usr/local"
-        ls -l /usr/local
-        echo "ls -l /usr/local/lib"
-        ls -l /usr/local/lib
+        echo "01 BOOST_ROOT=$BOOST_ROOT"
+#        echo "ls -l /usr/local"
+#        ls -l /usr/local
+#        echo "ls -l /usr/local/lib"
+#        ls -l /usr/local/lib
+        echo "ls -l /Users/runner/work/ore-wheels/ore-wheels"
+        ls -l /Users/runner/work/ore-wheels/ore-wheels
 #    - name: Build ORE
 #      run: |
 #        pwd
