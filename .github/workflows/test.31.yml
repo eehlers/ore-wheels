@@ -22,6 +22,8 @@ jobs:
         ls -l /usr/local
         echo "ls -l /usr/local/lib"
         ls -l /usr/local/lib
+        lipo /usr/local/lib/libboost_filesystem.dylib -info
+        lipo /usr/local/lib/libboost_*.dylib -info
 #    - name: Build ORE
 #      run: |
 #        pwd
