@@ -27,7 +27,7 @@ jobs:
         pwd
         tar xfz ore.00.tgz
         tar xfz oreswig.01.tgz
-        cp setup.30.py oreswig/OREAnalytics-SWIG/Python/setup.py
+        cp setup.31.py oreswig/OREAnalytics-SWIG/Python/setup.py
         cp oreanalytics-config.30 oreswig/OREAnalytics-SWIG/oreanalytics-config
         cd ore
         mkdir build
