@@ -135,24 +135,6 @@ python setup.py test
 #pip install build
 python -m build --wheel
 
-####################################################
-# run cibuildwheels locally
-
-cd /home/erik/quaternion/ore-wheels
-python3 -m venv env1
-. ./env1/bin/activate
-pip install cibuildwheel
-export CIBW_BUILD='cp310-manylinux_x86_64'
-export CIBW_BUILD_VERBOSITY='2'
-export CIBW_ENVIRONMENT_LINUX='CXXFLAGS="-O3 -g0"'
-export CIBW_ENVIRONMENT_PASS_LINUX='CXXFLAGS'
-export CIBW_BEFORE_ALL_LINUX='./before_all_linux.local.sh'
-cibuildwheel --platform linux
-deactivate
-rm -rf env1
-
-####################################################
-
 # OLD
 # copy props files
 "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
@@ -194,3 +176,104 @@ CMake Warning (dev) at OREData/CMakeLists.txt:14 (find_package):
 
   For compatibility, CMake is ignoring the variable.
 
+################################################
+# ALTERNATE WAY TO BUILD SWIG WRAPPERS - WINDOWS
+################################################
+
+# QuantExt-SWIG
+5.1 Use cmake to generate the project files
+
+cd %DEMO_ORE_SWIG_DIR%\buildQuantExt-SWIG
+"C:\Program Files\CMake\bin\cmake.exe" -G "Visual Studio 17 2022" ^
+-A x64 ^
+-D SWIG_DIR=%DEMO_SWIG_DIR%\Lib ^
+-D SWIG_EXECUTABLE=%DEMO_SWIG_DIR%\swig.exe ^
+-D ORE:PATHNAME=%DEMO_ORE_DIR% ^
+-D BOOST_ROOT=%DEMO_BOOST_DIR% ^
+-S %DEMO_ORE_SWIG_DIR%\QuantExt-SWIG\Python
+-> %DEMO_ORE_SWIG_DIR%\buildQuantExt-SWIG\QuantExt-Python.sln
+
+5.1.1 EITHER Build the pyd file using Visual Studio
+
+%DEMO_ORE_SWIG_DIR%\buildQuantExt-SWIG\QuantExt-Python.sln
+-> %DEMO_ORE_SWIG_DIR%\buildQuantExt-SWIG\Release\_QuantExt.pyd
+
+5.1.2 OR Build the pyd file using cmake
+
+cd %DEMO_ORE_SWIG_DIR%\buildQuantExt-SWIG
+"C:\Program Files\CMake\bin\cmake.exe" --build . --config Release
+-> %DEMO_ORE_SWIG_DIR%\buildQuantExt-SWIG\Release\_QuantExt.pyd
+
+# ORE-SWIG
+3.1 Use cmake to generate the project files
+
+cd %DEMO_ORE_SWIG_DIR%
+mkdir buildOREAnalytics-SWIG
+cd %DEMO_ORE_SWIG_DIR%\buildOREAnalytics-SWIG
+"C:\Program Files\CMake\bin\cmake.exe" -G "Visual Studio 17 2022" ^
+-A x64 ^
+-D SWIG_DIR=%DEMO_SWIG_DIR%\Lib ^
+-D SWIG_EXECUTABLE=%DEMO_SWIG_DIR%\swig.exe ^
+-D ORE:PATHNAME=%DEMO_ORE_DIR% ^
+-D BOOST_ROOT=%DEMO_BOOST_DIR% ^
+-S %DEMO_ORE_SWIG_DIR%\OREAnalytics-SWIG\Python
+-> %DEMO_ORE_SWIG_DIR%\buildOREAnalytics-SWIG\OREAnalytics-Python.sln
+
+3.1.1 EITHER Build the pyd file using Visual Studio
+
+%DEMO_ORE_SWIG_DIR%\buildOREAnalytics-SWIG\OREAnalytics-Python.sln
+-> %DEMO_ORE_SWIG_DIR%\buildOREAnalytics-SWIG\Release\_OREAnalytics.pyd
+
+3.1.2 OR Build the pyd file using cmake
+
+cd %DEMO_ORE_SWIG_DIR%\buildOREAnalytics-SWIG
+"C:\Program Files\CMake\bin\cmake.exe" --build . --config Release
+-> %DEMO_ORE_SWIG_DIR%\buildOREAnalytics-SWIG\Release\_OREAnalytics.pyd
+
+##############################################
+# ALTERNATE WAY TO BUILD SWIG WRAPPERS - LINUX
+##############################################
+
+# QuantExt-SWIG
+
+4.1 Use cmake to generate the project files
+
+cd $DEMO_ORE_SWIG_DIR
+mkdir buildQuantExt-SWIG
+cd $DEMO_ORE_SWIG_DIR/buildQuantExt-SWIG
+cmake -DORE:PATHNAME=$DEMO_ORE_DIR -DBOOST_ROOT=$DEMO_BOOST_DIR -S$DEMO_ORE_SWIG_DIR/QuantExt-SWIG/Python
+-> $DEMO_ORE_SWIG_DIR/buildQuantExt-SWIG/Makefile
+
+4.1.1 EITHER Build the pyd file using make
+
+cd $DEMO_ORE_SWIG_DIR/buildQuantExt-SWIG
+make
+-> $DEMO_ORE_SWIG_DIR/buildQuantExt-SWIG/_QuantExt.so
+
+4.1.2 OR Build the pyd file using cmake
+
+cd $DEMO_ORE_SWIG_DIR/buildQuantExt-SWIG
+cmake --build .
+-> $DEMO_ORE_SWIG_DIR/buildQuantExt-SWIG/_QuantExt.so
+
+# ORE-SWIG
+
+7.1 Use cmake to generate the project files
+
+cd $DEMO_ORE_SWIG_DIR
+mkdir buildOREAnalytics-SWIG
+cd $DEMO_ORE_SWIG_DIR/buildOREAnalytics-SWIG
+cmake -DBOOST_ROOT=$DEMO_BOOST_DIR -DORE=$DEMO_ORE_DIR -S$DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python -Wno-dev
+-> $DEMO_ORE_SWIG_DIR/buildOREAnalytics-SWIG/Makefile
+
+7.1.1 EITHER Build the pyd file using make
+
+cd $DEMO_ORE_SWIG_DIR/buildOREAnalytics-SWIG
+make # swap space
+-> $DEMO_ORE_SWIG_DIR/buildOREAnalytics-SWIG/_OREAnalytics.so
+
+7.1.2 OR Build the pyd file using cmake
+
+cd $DEMO_ORE_SWIG_DIR/buildOREAnalytics-SWIG
+cmake --build .
+-> $DEMO_ORE_SWIG_DIR/buildOREAnalytics-SWIG/_OREAnalytics.so
