@@ -181,6 +181,8 @@ class my_build_ext(build_ext):
         elif compiler == 'unix':
             print("####################################################")
             print("####################################################")
+            os.environ['ORE']='/project/ore'
+            ORE=os.environ['ORE']
             print(f'ORE={ORE}')
             ql_compile_args = \
                 os.popen('../oreanalytics-config --cflags').read()[:-1].split()

@@ -11,7 +11,8 @@ jobs:
     - name: Build ORE wheels
       uses: pypa/cibuildwheel@v2.11.1
       env:
-        #ORE: /home/runner/work/ore-wheels/ore-wheels/ore
+        ORE: /project/ore
+        CIBW_ENVIRONMENT_PASS_LINUX: ORE
         #CIBW_BUILD: cp37-manylinux_x86_64
         #CIBW_BUILD: cp38-manylinux_x86_64
         #CIBW_BUILD: cp39-manylinux_x86_64
