@@ -8,6 +8,8 @@ jobs:
     - name: Build ORE
       run: |
         ls -l
+        chmod 744 build_ore.23.sh
+        ls -l
         ./build_ore.23.sh
     - name: Build ORE wheels
       uses: pypa/cibuildwheel@v2.11.1
