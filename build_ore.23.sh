@@ -10,7 +10,7 @@ echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 # Unpack ORE & ORE-SWIG
 tar xfz ore.00.tgz
 tar xfz oreswig.01.tgz
-cp setup.23.py oreswig/OREAnalytics-SWIG/Python/setup.py
+cp setup.22.py oreswig/OREAnalytics-SWIG/Python/setup.py
 cp oreanalytics-config.22 oreswig/OREAnalytics-SWIG/oreanalytics-config
 # hack for musllinux
 cp fxforward.cpp ore/QuantExt/qle/instruments
