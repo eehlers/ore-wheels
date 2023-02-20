@@ -4,7 +4,7 @@
 C:\Users\eric.ehlers\.pypirc
 #python -m pip install --upgrade pip
 #python -m pip install --upgrade twine
-cd C:\erik\projects\wheel\wheels\20230102
+cd C:\erik\projects\wheel\wheels\ore
 python -m twine upload --repository testpypi *.whl
 
 # UPLOAD - LINUX
