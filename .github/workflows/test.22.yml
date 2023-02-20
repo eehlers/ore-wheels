@@ -11,7 +11,7 @@ jobs:
     - name: Build ORE wheels
       uses: pypa/cibuildwheel@v2.11.1
       env:
-        ORE: /project/ore
+        #ORE: /project/ore
         #CIBW_BUILD: "*-manylinux*"
         #CIBW_SKIP: cp36-*
         #CIBW_BUILD: cp37-manylinux_x86_64
