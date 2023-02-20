@@ -152,6 +152,11 @@ deactivate
 rm -rf env1
 
 ####################################################
+# ninja
+
+python3 /home/erik/projects/cmake/ninjatracing/ninjatracing .ninja_log > trace.json
+/home/erik/quaternion/ore.eehlers/build/trace.json
+####################################################
 
 # OLD
 # copy props files
