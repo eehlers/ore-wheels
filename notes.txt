@@ -4,6 +4,7 @@ ore.01.tgz - manually commented out docs/tests from CMakeLists.txt files - DELET
 ore.02.tgz - raw files produced by git-archive-all after commits:
              added flags to CMakeLists.txt files to make build optional
              disabled flag in cmake/commonSettings.cmake
+             cmakelists dependencies on unit_test_framework - made them conditional
 
 oreswig.00.tgz - raw files produced by git-archive-all
 oreswig.01.tgz - ran the wrapper
