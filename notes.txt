@@ -1,6 +1,9 @@
 
 ore.00.tgz - raw files produced by git-archive-all
-ore.01.tgz - manually commented out docs/tests from CMakeLists.txt files
+ore.01.tgz - manually commented out docs/tests from CMakeLists.txt files - DELETEME
+ore.02.tgz - raw files produced by git-archive-all after commits:
+             added flags to CMakeLists.txt files to make build optional
+             disabled flag in cmake/commonSettings.cmake
 
 oreswig.00.tgz - raw files produced by git-archive-all
 oreswig.01.tgz - ran the wrapper
@@ -104,6 +107,9 @@ pip install git-archive-all
 git-archive-all ore.tgz
 cd ../oreswig.eehlers
 git-archive-all oreswig.tgz
+cd ../ore.eehlers
+deactivate
+rm -rf env1
 
 ===============
 # simulate the job - Windows

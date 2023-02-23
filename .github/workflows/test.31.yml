@@ -25,15 +25,18 @@ jobs:
     - name: Build ORE
       run: |
         pwd
-        tar xfz ore.00.tgz
+        #tar xfz ore.00.tgz
+        tar xfz ore.02.tgz
         tar xfz oreswig.01.tgz
         cp setup.31.py oreswig/OREAnalytics-SWIG/Python/setup.py
         cp oreanalytics-config.30 oreswig/OREAnalytics-SWIG/oreanalytics-config
         cd ore
         mkdir build
         cd build
-        cmake -DBUILD_DOC=OFF -DCMAKE_OSX_ARCHITECTURES=arm64 ..
-        cmake --build .
+        #cmake -DBUILD_DOC=OFF -DCMAKE_OSX_ARCHITECTURES=arm64 ..
+        cmake -DCMAKE_OSX_ARCHITECTURES=arm64 -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF ..
+        #cmake --build .
+        cmake --build . -j 4
         cmake --install .
     - name: Build ORE wheels
       uses: pypa/cibuildwheel@v2.11.1
