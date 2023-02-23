@@ -12,8 +12,10 @@ curl -O -L https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boos
 tar xfz boost_1_80_0.tar.gz
 cd boost_1_80_0
 # FIXME the below fails because boost_serialization can't find boost_unit_test_framework?
-#./bootstrap.sh --with-libraries=date_time,filesystem,regex,serialization,system,thread,timer
-./bootstrap.sh
+./bootstrap.sh --with-libraries=date_time,filesystem,regex,serialization,system,thread,timer
+# With unit_test_framework - have not yet tried this one
+#./bootstrap.sh --with-libraries=date_time,filesystem,regex,serialization,system,thread,timer,unit_test_framework
+#./bootstrap.sh
 ./b2 install
 cd ..
 

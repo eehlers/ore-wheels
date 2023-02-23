@@ -150,7 +150,7 @@ python -m build --wheel
 ####################################################
 # run cibuildwheels locally
 
-cd /home/erik/quaternion/ore-wheels
+cd /home/erik/quaternion/oreswig.eehlers2/OREAnalytics-SWIG/Python
 python3 -m venv env1
 . ./env1/bin/activate
 pip install cibuildwheel
@@ -159,7 +159,7 @@ export CIBW_BUILD_VERBOSITY='2'
 export CIBW_ENVIRONMENT_LINUX='CXXFLAGS="-O3 -g0"'
 export CIBW_ENVIRONMENT_PASS_LINUX='CXXFLAGS'
 export CIBW_BEFORE_ALL_LINUX='./before_all_linux.local.sh'
-export CIBW_REPAIR_WHEEL_COMMAND_MACOS='DYLD_LIBRARY_PATH=/host/home/erik/quaternion/boost_1_81_0/stage/lib delocate-listdeps {wheel} && DYLD_LIBRARY_PATH=/host/home/erik/quaternion/boost_1_81_0/stage/lib delocate-wheel --require-archs {delocate_archs} -w {dest_dir} {wheel}'
+export CIBW_REPAIR_WHEEL_COMMAND_LINUX='LD_LIBRARY_PATH=/host/home/erik/quaternion/boost_1_81_0/stage/lib auditwheel repair -w {dest_dir} {wheel}'
 cibuildwheel --platform linux
 deactivate
 rm -rf env1
