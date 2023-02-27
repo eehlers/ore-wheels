@@ -181,6 +181,20 @@ cibuildwheel --platform linux
 deactivate
 rm -rf env1
 
+# include dirs
+/host/home/erik/quaternion/boost_1_81_0
+/host/home/erik/quaternion/ore.eehlers/QuantLib
+/host/home/erik/quaternion/ore.eehlers/QuantExt
+/host/home/erik/quaternion/ore.eehlers/OREData
+/host/home/erik/quaternion/ore.eehlers/OREAnalytics
+
+# link dirs
+/host/home/erik/quaternion/boost_1_81_0/stage/lib
+/host/home/erik/quaternion/ore.eehlers/build/QuantLib/ql
+/host/home/erik/quaternion/ore.eehlers/build/OREAnalytics/orea
+/host/home/erik/quaternion/ore.eehlers/build/QuantExt/qle
+/host/home/erik/quaternion/ore.eehlers/build/OREData/ored
+
 ####################################################
 # ninja
 
