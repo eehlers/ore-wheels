@@ -247,7 +247,7 @@ CMake Warning (dev) at OREData/CMakeLists.txt:14 (find_package):
 
 # QL - using autotools / configure, same as github actions
 ./configure --prefix=/home/erik/quaternion/test_builds/install --disable-static --disable-test-suite --enable-unity-build CXXFLAGS="-O3 -g0"
-make -j 4 install
+date;make -j4 install;date
 
 # QL - using the QL subset of the ORE CMake build
 cmake ..
@@ -274,4 +274,4 @@ cmake/commonSettings.cmake
 
 OREAnalytics/CMakeLists.txt
 find_package (Boost REQUIRED COMPONENTS unit_test_framework regex date_time thread serialization system filesystem timer OPTIONAL_COMPONENTS chrono)
-
+cmake --build . -j 4
