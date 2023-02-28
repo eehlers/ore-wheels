@@ -3,10 +3,6 @@ on: workflow_dispatch
 jobs:
   wheels-macos:
     runs-on: macos-11
-    #strategy:
-    #  fail-fast: false
-    #  matrix:
-    #    arch: [x86_64, arm64]
     steps:
     - uses: actions/checkout@v3
     - name: Setup
@@ -26,24 +22,14 @@ jobs:
         cd ore
         mkdir build
         cd build
-        #cmake -DBUILD_DOC=OFF ..
-        cmake -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF ..
-        #cmake --build .
-        cmake --build . -j 4
+        cmake -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_BENCHMARK=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF ..
+        cmake --build . -j4
         cmake --install .
-        echo "ls -l /usr/local/lib"
-        ls -l /usr/local/lib
-        echo "find /usr/local -name version.hpp"
-        find /usr/local -name version.hpp
     - name: Build ORE wheels
       uses: pypa/cibuildwheel@v2.11.1
       env:
-        #CIBW_BUILD: cp37-macosx_x86_64
-        #CIBW_BUILD: cp38-macosx_x86_64
-        #CIBW_BUILD: cp39-macosx_x86_64
         #CIBW_BUILD: cp310-macosx_x86_64
         CIBW_SKIP: cp36-*
-        #CIBW_ARCHS_MACOS: ${{ matrix.arch }}
         CIBW_ARCHS_MACOS: x86_64
         CXXFLAGS: -std=c++14 -g0 -O3
         CIBW_BUILD_VERBOSITY: 2
@@ -55,6 +41,5 @@ jobs:
     - name: Save wheels as artifacts
       uses: actions/upload-artifact@v3
       with:
-        #name: wheels-macos-${{ matrix.arch }}
         name: wheels-macos-x86_64
         path: ./wheelhouse/*.whl
