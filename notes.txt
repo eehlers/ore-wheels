@@ -3,7 +3,7 @@ ore.00.zip - empty repo created with python module git-archive-all (?)
 ore.01.zip - added 64 bit lib files FIXME change runtime from dynamic to static, add 32 bit
 
 oreswig.01.zip - ran the swig wrapper, patched setup.py for ORE_STATIC_RUNTIME
-oreswig.02.zip - patched setup.py to look for libs in build2 directory
+oreswig.02.zip - patched setup.py 1) look for libs in build2 directory 2) rename package to osre
 
 ore.00.tgz - raw files produced by git-archive-all
 ore.01.tgz - manually commented out docs/tests from CMakeLists.txt files - DELETEME

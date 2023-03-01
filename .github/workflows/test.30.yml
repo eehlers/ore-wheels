@@ -17,12 +17,12 @@ jobs:
         #tar xfz ore.00.tgz
         tar xfz ore.02.tgz
         tar xfz oreswig.01.tgz
-        cp setup.py oreswig/OREAnalytics-SWIG/Python/setup.py
+        cp setup.py oreswig/OREAnalytics-SWIG/Python
         cp oreanalytics-config.30 oreswig/OREAnalytics-SWIG/oreanalytics-config
         cd ore
         mkdir build
         cd build
-        cmake -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_BENCHMARK=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF ..
+        cmake -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_BENCHMARK=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF -DCMAKE_BUILD_TYPE=Release ..
         cmake --build . -j4
         cmake --install .
     - name: Build ORE wheels
