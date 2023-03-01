@@ -11,7 +11,7 @@ jobs:
         #chmod 744 build_ore.23.sh
         #ls -l
         sudo sysctl vm.swappiness=10
-        ./build_ore.23.sh
+        ./build_ore.22.sh
     - name: Build ORE wheels
       uses: pypa/cibuildwheel@v2.11.1
       env:
