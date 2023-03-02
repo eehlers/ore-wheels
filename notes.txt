@@ -52,7 +52,8 @@ https://pypi.org/
 
 # UPLOAD - WINDOWS
 cd C:\erik\projects\wheel\wheels2
-twine upload -r pypi --sign xxx
+#twine upload -r pypi --sign xxx
+twine upload -r pypi xxx
 
 # INSTALL - WINDOWS
 cd %DEMO_ORE_SWIG_DIR%\OREAnalytics-SWIG\Python\Examples
@@ -65,6 +66,8 @@ deactivate
 rmdir /s /q env1
 
 # UPLOAD - LINUX
+cd /home/erik/quaternion/wheels2
+twine upload -r pypi *whl
 
 # INSTALL - LINUX
 
