@@ -17,6 +17,7 @@ ore.02.tgz - raw files produced by git-archive-all after commits:
 
 oreswig.00.tgz - raw files produced by git-archive-all
 oreswig.01.tgz - ran the wrapper
+oreswig.00.tgz - raw files produced by git-archive-all, ran the wrapper
 
 =========
 https://test.pypi.org/
@@ -111,26 +112,20 @@ PROBLEMS
 =====================================
 
 ===============
-# make the source zip file
 
-# make the source zip file #2 - windows
+# make the source zip file - windows
 cd C:\erik\ORE\repos\ore.github
 #pip install git-archive-all
 C:\Users\eric.ehlers\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\Scripts\git-archive-all ore.zip
 cd C:\erik\ORE\repos\oreswig.github
 C:\Users\eric.ehlers\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\Scripts\git-archive-all oreswig.zip
 
-# make the source zip file #2 - linux
-cd /home/erik/quaternion/ore.eehlers
-python3 -m venv env1
-. env1/bin/activate
-pip install git-archive-all
+# make the source zip file - linux
+cd /home/erik/quaternion/ore
+#pip install git-archive-all
 git-archive-all ore.tgz
-cd ../oreswig.eehlers
+cd /home/erik/quaternion/oreswig
 git-archive-all oreswig.tgz
-cd ../ore.eehlers
-deactivate
-rm -rf env1
 
 ===============
 # simulate the job - Windows

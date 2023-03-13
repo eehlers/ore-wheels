@@ -168,30 +168,25 @@ class my_build_ext(build_ext):
             self.libraries = [ 'advapi32' ]
 
             if self.debug:
-                if self.static:
+                if self.static or 'ORE_STATIC_RUNTIME' in os.environ:
                     extra_compile_args.append('/MTd')
                 else:
                     extra_compile_args.append('/MDd')
             else:
-                if self.static:
+                if self.static or 'ORE_STATIC_RUNTIME' in os.environ:
                     extra_compile_args.append('/MT')
                 else:
                     extra_compile_args.append('/MD')
 
         elif compiler == 'unix':
-            print("####################################################")
-            print("####################################################")
+            #import pdb; pdb.set_trace()
+            #os.chdir('..')
             os.environ['ORE']='/project/ore'
             ORE=os.environ['ORE']
-            print(f'ORE={ORE}')
             ql_compile_args = \
                 os.popen('../oreanalytics-config --cflags').read()[:-1].split()
-            print('ql_compile_args={}'.format(ql_compile_args))
             ql_link_args = \
                 os.popen('../oreanalytics-config --libs').read()[:-1].split()
-            print('ql_link_args={}'.format(ql_link_args))
-            print("####################################################")
-            print("####################################################")
 
             self.define += [ (arg[2:],None) for arg in ql_compile_args
                              if arg.startswith('-D') ]
@@ -292,4 +287,3 @@ framework for quantitative finance.
                           'build_ext': my_build_ext
                           }
       )
-
