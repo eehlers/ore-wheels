@@ -16,8 +16,10 @@ jobs:
       run: |
         pwd
         #tar xfz ore.00.tgz
-        tar xfz ore.02.tgz
-        tar xfz oreswig.01.tgz
+        #tar xfz ore.02.tgz
+        tar xfz ore.03.tgz
+        #tar xfz oreswig.01.tgz
+        tar xfz oreswig.02.tgz
         cp setup.py oreswig/OREAnalytics-SWIG/Python
         cp oreanalytics-config.30 oreswig/OREAnalytics-SWIG/oreanalytics-config
         cd ore
