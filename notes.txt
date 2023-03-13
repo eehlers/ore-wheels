@@ -1,9 +1,12 @@
 
 ore.00.zip - empty repo created with python module git-archive-all (?)
 ore.01.zip - added 64 bit lib files FIXME change runtime from dynamic to static, add 32 bit
+ore.02.zip - empty repo created with python module git-archive-all - updated from github master
 
+oreswig.00.zip - empty repo created with python module git-archive-all
 oreswig.01.zip - ran the swig wrapper, patched setup.py for ORE_STATIC_RUNTIME
 oreswig.02.zip - patched setup.py 1) look for libs in build2 directory 2) rename package to osre
+oreswig.03.zip - empty repo created with python module git-archive-all - ran swig wrapper
 
 ore.00.tgz - raw files produced by git-archive-all
 ore.01.tgz - manually commented out docs/tests from CMakeLists.txt files - DELETEME
@@ -107,29 +110,12 @@ PROBLEMS
 ===============
 # make the source zip file
 
-# git bash
-git clone https://github.com/eehlers/Engine.git ore.eehlers.src
-cd ore.eehlers.src
-vi CMakeLists.txt -> include(CPack)
-git submodule init
-git submodule update
-
-# DOS
-cd C:\erik\ORE\repos\ore.eehlers.src
-mkdir build
-cd build
-"C:\Program Files\CMake\bin\cmake.exe" -G "Visual Studio 17 2022" -A x64 ..
-"C:\Program Files\CMake\bin\cpack.exe" --config CPackSourceConfig.cmake
--> C:/erik/ORE/repos/ore.eehlers.src/build/ORE-0.1.1-Source.zip
-
 # make the source zip file #2 - windows
-cd C:\erik\ORE\repos\ore.eehlers
-python -m venv env1
-.\env1\Scripts\activate.bat
-pip install git-archive-all
-git-archive-all ore.zip
-cd ..\oreswig.eehlers
-git-archive-all oreswig.zip
+cd C:\erik\ORE\repos\ore.github
+#pip install git-archive-all
+C:\Users\eric.ehlers\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\Scripts\git-archive-all ore.zip
+cd C:\erik\ORE\repos\oreswig.github
+C:\Users\eric.ehlers\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\Scripts\git-archive-all oreswig.zip
 
 # make the source zip file #2 - linux
 cd /home/erik/quaternion/ore.eehlers
@@ -306,3 +292,76 @@ cmake/commonSettings.cmake
 OREAnalytics/CMakeLists.txt
 find_package (Boost REQUIRED COMPONENTS unit_test_framework regex date_time thread serialization system filesystem timer OPTIONAL_COMPONENTS chrono)
 cmake --build . -j 4
+
+================
+IOSTREAMS
+================
+
+SET DEMO_BOOST_ROOT=C:\erik\ORE\repos\boost2\boost
+SET DEMO_BOOST_LIB=C:\erik\ORE\repos\boost2\boost\lib64-msvc-14.3
+
+SET DEMO_ORE_DIR=C:\erik\ORE\repos\ore.gitlab
+
+SET ZLIB_ROOT=C:\erik\ORE\repos\zlib-install
+SET ZLIB_ROOT=C:\erik\ORE\repos\vcpkg\packages\zlib_x64-windows
+
+SET DEMO_BOOST_ROOT=C:\erik\ORE\repos\boost2\boost
+SET DEMO_BOOST_LIB=C:\erik\ORE\repos\boost2\boost\lib64-msvc-14.3
+
+# gitlab
+SET DEMO_BOOST_ROOT=C:\erik\ORE\repos\boost2\boost
+SET DEMO_BOOST_LIB=C:\erik\ORE\repos\boost2\boost\lib64-msvc-14.3
+SET DEMO_SWIG_DIR=C:\erik\ORE\repos\swigwin-4.1.1
+SET DEMO_ORE_DIR=C:\erik\ORE\repos\oreplus\ore
+SET DEMO_ORE_SWIG_DIR=C:\erik\ORE\repos\oreswig.gitlab
+#SET ZLIB_ROOT=C:\erik\ORE\repos\vcpkg\packages\zlib_x64-windows
+
+# github
+SET DEMO_BOOST_ROOT=C:\erik\ORE\repos\boost\boost_1_81_0
+SET DEMO_BOOST_LIB=C:\erik\ORE\repos\boost\boost_1_81_0\lib64-msvc-14.3
+SET DEMO_SWIG_DIR=C:\erik\ORE\repos\swigwin-4.1.1
+SET DEMO_ORE_DIR=C:\erik\ORE\repos\ore.github
+SET DEMO_ORE_SWIG_DIR=C:\erik\ORE\repos\oreswig.github
+#SET ZLIB_ROOT=C:\erik\ORE\repos\vcpkg\packages\zlib_x64-windows
+
+cd C:\erik\ORE\repos\zlib-1.2.13
+mkdir build
+cd build
+"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_INSTALL_PREFIX=C:\erik\ORE\repos\zlib-install -G "Visual Studio 17 2022" -A x64 ..
+"C:\Program Files\CMake\bin\cmake.exe" --build . --config Release
+"C:\Program Files\CMake\bin\cmake.exe" --install .
+
+C:\erik\ORE\repos\zlib-install\lib
+/LIBPATH:C:\erik\ORE\repos\zlib-install\lib
+
+# PROJECT #1
+
+# boost
+cd C:\erik\projects\empty\iostream\boost0\boost_1_81_0
+C:\erik\ORE\repos\boost\install\b2.exe --with-iostreams --build-dir=C:\erik\ORE\repos\boost\build --stagedir=.\lib\x64 toolset=msvc-14.3 address-model=64 runtime-link=static stage
+
+set BOOST_INCLUDEDIR=C:\erik\ORE\repos\boost2\boost
+set BOOST_LIBRARYDIR=C:\erik\ORE\repos\boost2\boost\lib64-msvc-14.3
+"C:\Program Files\CMake\bin\cmake.exe" -DBoost_NO_WARN_NEW_VERSIONS=1 -G "Visual Studio 17 2022" -A x64 ..
+"C:\Program Files\CMake\bin\cmake.exe" -DBoost_NO_WARN_NEW_VERSIONS=1 -G "Visual Studio 17 2022" -A x64 .. --fresh
+"C:\Program Files\CMake\bin\cmake.exe" --build . --config Release
+"C:\Program Files\CMake\bin\cmake.exe" --build . --config Release --verbose
+
+
+/c/erik/ORE/repos/oreswig.gitlab/OREAnalytics-SWIG/Python
+# with zlib / dynamic linking
+cmd.zlib.01.link.00.cmd - default command from setup.py
+cmd.zlib.01.link.01.cmd - modified/hacked, works, requires MSVC command prompt / rc.exe - why?
+
+======================
+setup.py wrap error
+======================
+OREAnalytics/oreanalytics_wrap.cpp(770571): error C2039: 'getInputs': is not a member of 'ore::analytics::OREApp'
+C:\erik\ORE\repos\ore.github\OREAnalytics\orea/app/oreapp.hpp(57): note: see declaration of 'ore::analytics::OREApp'
+OREAnalytics/oreanalytics_wrap.cpp(810827): error C2039: 'initBuilders': is not a member of 'ore::data'
+C:\erik\ORE\repos\ore.github\OREData\ored/utilities/vectorutils.hpp(29): note: see declaration of 'ore::data'
+OREAnalytics/oreanalytics_wrap.cpp(810827): error C3861: 'initBuilders': identifier not found
+
+git revert 687e82
+git revert c4455e
+
