@@ -7,6 +7,7 @@ oreswig.00.zip - empty repo created with python module git-archive-all
 oreswig.01.zip - ran the swig wrapper, patched setup.py for ORE_STATIC_RUNTIME
 oreswig.02.zip - patched setup.py 1) look for libs in build2 directory 2) rename package to osre
 oreswig.03.zip - empty repo created with python module git-archive-all - ran swig wrapper
+                 patched ored_reports.i
 
 ore.00.tgz - raw files produced by git-archive-all
 ore.01.tgz - manually commented out docs/tests from CMakeLists.txt files - DELETEME
@@ -340,6 +341,13 @@ SET DEMO_SWIG_DIR=C:\erik\ORE\repos\swigwin-4.1.1
 SET DEMO_ORE_DIR=C:\erik\ORE\repos\ore.github
 SET DEMO_ORE_SWIG_DIR=C:\erik\ORE\repos\oreswig.github
 #SET ZLIB_ROOT=C:\erik\ORE\repos\vcpkg\packages\zlib_x64-windows
+
+# test1
+SET DEMO_BOOST_ROOT=C:\erik\ORE\repos\boost\boost_1_81_0
+SET DEMO_BOOST_LIB=C:\erik\ORE\repos\boost\boost_1_81_0\lib64-msvc-14.3
+SET DEMO_SWIG_DIR=C:\erik\ORE\repos\swigwin-4.1.1
+SET DEMO_ORE_DIR=C:\erik\ORE\repos\ore.github
+SET DEMO_ORE_SWIG_DIR=C:\erik\projects\wheel\zips\oreswig
 
 cd C:\erik\ORE\repos\zlib-1.2.13
 mkdir build
