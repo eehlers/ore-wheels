@@ -17,6 +17,8 @@ jobs:
         #tar xfz ore.00.tgz
         #tar xfz ore.02.tgz
         tar xfz ore.03.tgz
+        cp exchangerate.hpp ore/QuantLib/ql
+        cp cpivolatilitystructure.hpp QuantExt/qle/termstructures/inflation/cpivolatilitystructure.hpp
         #tar xfz oreswig.01.tgz
         tar xfz oreswig.02.tgz
         #cp setup.py oreswig/OREAnalytics-SWIG/Python
