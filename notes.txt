@@ -164,7 +164,7 @@ python setup.py test
 python -m build --wheel
 
 ####################################################
-# run cibuildwheels locally
+# run cibuildwheels locally - linux
 
 # ATTEMPT #1
 cd /home/erik/quaternion/oreswig.eehlers2/OREAnalytics-SWIG/Python
@@ -209,6 +209,25 @@ rm -rf env1
 /host/home/erik/quaternion/ore.eehlers/build/OREAnalytics/orea
 /host/home/erik/quaternion/ore.eehlers/build/QuantExt/qle
 /host/home/erik/quaternion/ore.eehlers/build/OREData/ored
+
+# run cibuildwheels locally - windows
+
+cd C:\erik\ORE\repos\oreswig.github\OREAnalytics-SWIG\Python
+python -m venv env1
+.\env1\Scripts\activate.bat
+pip install cibuildwheel
+
+SET CIBW_BUILD=cp310-win_amd64
+SET CIBW_ARCHS_WINDOWS=AMD64
+SET CIBW_BUILD_VERBOSITY=2
+
+SET CIBW_BUILD=cp37-win32
+SET CIBW_ARCHS_WINDOWS=x86
+SET CIBW_BUILD_VERBOSITY=2
+
+cibuildwheel --platform windows
+deactivate
+rmdir /s /q env1
 
 ####################################################
 # ninja

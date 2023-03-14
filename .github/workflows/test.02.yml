@@ -44,7 +44,7 @@ jobs:
         BOOST_LIB: ${{ matrix.boost-lib }}
         ORE_DIR: C:\local\ore
         ORE_STATIC_RUNTIME: 1
-        CIBW_SKIP: cp36-*
+        CIBW_SKIP: cp36-* cp37-*
         CIBW_ARCHS_WINDOWS: ${{ matrix.arch }}
         CIBW_BUILD_VERBOSITY: 2
       with:
