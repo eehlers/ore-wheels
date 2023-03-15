@@ -19,6 +19,7 @@ jobs:
         #tar xfz ore.02.tgz
         tar xfz ore.03.tgz
         cp exchangerate.hpp ore/QuantLib/ql
+        cp inmemoryreport.hpp ore/OREData/ored/report/inmemoryreport.hpp
         #tar xfz oreswig.01.tgz
         tar xfz oreswig.02.tgz
         #cp setup.py oreswig/OREAnalytics-SWIG/Python

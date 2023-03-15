@@ -7,7 +7,7 @@ oreswig.00.zip - empty repo created with python module git-archive-all
 oreswig.01.zip - ran the swig wrapper, patched setup.py for ORE_STATIC_RUNTIME
 oreswig.02.zip - patched setup.py 1) look for libs in build2 directory 2) rename package to osre
 oreswig.03.zip - empty repo created with python module git-archive-all - ran swig wrapper
-                 patched ored_reports.i
+                 patched ored_reports.i <- removed
 
 ore.00.tgz - raw files produced by git-archive-all
 ore.01.tgz - manually commented out docs/tests from CMakeLists.txt files - DELETEME
@@ -19,7 +19,7 @@ ore.03.tgz - raw files produced by git-archive-all
 
 oreswig.00.tgz - raw files produced by git-archive-all
 oreswig.01.tgz - ran the wrapper
-oreswig.00.tgz - raw files produced by git-archive-all, ran the wrapper
+oreswig.02.tgz - raw files produced by git-archive-all, ran the wrapper
 
 =========
 https://test.pypi.org/
