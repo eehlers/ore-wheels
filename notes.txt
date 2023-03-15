@@ -397,3 +397,14 @@ troubleshooting github actions build errors
 # error: no member named 'deseasonalisedZeroRate' in 'QuantLib::Seasonality'
 OREAnalytics/orea/scenario/scenariosimmarket.cpp:1934
 QuantLib/ql/termstructures/inflation/seasonality.hpp
+
+======================
+override
+======================
+QuantExt/qle/termstructures/inflation/cpivolatilitystructure.hpp
+QuantExt/qle/termstructures/inflation/piecewisezeroinflationcurve.hpp
+cmake/commonSettings.cmake
+======================
+missing ql commit
+======================
+cp exchangerate.hpp ore/QuantLib/ql
