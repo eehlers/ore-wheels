@@ -19,7 +19,7 @@ jobs:
         tar xfz ore.03.tgz
         cp exchangerate.hpp ore/QuantLib/ql
         #cp cpivolatilitystructure.hpp ore/QuantExt/qle/termstructures/inflation/cpivolatilitystructure.hpp
-        cp piecewisezeroinflationcurve.hpp ore/QuantExt/qle/termstructures/inflation/piecewisezeroinflationcurve.hpp
+        #cp piecewisezeroinflationcurve.hpp ore/QuantExt/qle/termstructures/inflation/piecewisezeroinflationcurve.hpp
         #tar xfz oreswig.01.tgz
         tar xfz oreswig.02.tgz
         #cp setup.py oreswig/OREAnalytics-SWIG/Python

@@ -435,6 +435,24 @@ make[2]: *** Waiting for unfinished jobs....
 2023-03-15T10:32:13.8027752Z [ 76%] Building CXX object QuantExt/qle/CMakeFiles/QuantExt.dir/termstructures/discountratiomodifiedcurve.cpp.o
 2023-03-15T10:32:13.8028612Z [ 76%] Building CXX object QuantExt/qle/CMakeFiles/QuantExt.dir/termstructures/dynamiccpivolatilitystructure.cpp.o
 
+******after updating QL subrepo?
+
+# macos, piecewisezeroinflationcurve.hpp, no override:
+[ 82%] Building CXX object OREData/ored/CMakeFiles/OREData.dir/marketdata/inflationcapfloorvolcurve.cpp.o
+[ 82%] Building CXX object OREData/ored/CMakeFiles/OREData.dir/marketdata/inflationcurve.cpp.o
+In file included from /Users/runner/work/ore-wheels/ore-wheels/ore/OREData/ored/marketdata/inflationcurve.cpp:29:
+/Users/runner/work/ore-wheels/ore-wheels/ore/QuantExt/qle/termstructures/inflation/piecewisezeroinflationcurve.hpp:69:10: error: 'setSeasonality' overrides a member function but is not marked 'override' [-Werror,-Winconsistent-missing-override]
+    void setSeasonality(const boost::shared_ptr<QuantLib::Seasonality>& seasonality =
+         ^
+/Users/runner/work/ore-wheels/ore-wheels/ore/OREData/ored/marketdata/inflationcurve.cpp:213:21: note: in instantiation of template class 'QuantExt::PiecewiseZeroInflationCurve<QuantLib::Linear>' requested here
+                new QuantExt::PiecewiseZeroInflationCurve<Linear>(
+                    ^
+/Users/runner/work/ore-wheels/ore-wheels/ore/cmake/../QuantLib/ql/termstructures/inflationtermstructure.hpp:145:22: note: overridden virtual function is here
+        virtual void setSeasonality(const ext::shared_ptr<Seasonality>& seasonality =
+                     ^
+1 error generated.
+make[2]: *** [OREData/ored/CMakeFiles/OREData.dir/marketdata/inflationcurve.cpp.o] Error 1
+
 ======================
 missing ql commit
 ======================
