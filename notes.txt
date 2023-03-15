@@ -392,18 +392,31 @@ cmd.zlib.01.link.00.cmd - default command from setup.py
 cmd.zlib.01.link.01.cmd - modified/hacked, works, requires MSVC command prompt / rc.exe - why?
 
 ======================
-troubleshooting github actions build errors
+override
+- try boost 1.72?
 ======================
-# error: no member named 'deseasonalisedZeroRate' in 'QuantLib::Seasonality'
-OREAnalytics/orea/scenario/scenariosimmarket.cpp:1934
-QuantLib/ql/termstructures/inflation/seasonality.hpp
+cmake/commonSettings.cmake
+
+# private laptop, linux build, boost 1.81:
+
+[ 75%] Building CXX object QuantExt/qle/CMakeFiles/QuantExt.dir/pricingengines/discountingbondtrsengine.cpp.o
+In file included from /home/erik/quaternion/boost_1_81_0/boost/date_time/local_time/dst_transition_day_rules.hpp:13,
+                 from /home/erik/quaternion/boost_1_81_0/boost/date_time/local_time/custom_time_zone.hpp:14,
+                 from /home/erik/quaternion/boost_1_81_0/boost/date_time/local_time/local_time_types.hpp:18,
+                 from /home/erik/quaternion/boost_1_81_0/boost/date_time/local_time/local_time.hpp:13,
+                 from /home/erik/quaternion/boost_1_81_0/boost/date_time.hpp:15,
+                 from /home/erik/quaternion/ore/QuantExt/qle/pricingengines/discountingbondtrsengine.cpp:32:
+/home/erik/quaternion/boost_1_81_0/boost/date_time/dst_transition_generators.hpp: In instantiation of ‘class boost::date_time::day_calc_dst_rule<boost::local_time::nth_last_rule_spec>’:
+/home/erik/quaternion/boost_1_81_0/boost/date_time/local_time/posix_time_zone.hpp:405:28:   required from here
+/home/erik/quaternion/boost_1_81_0/boost/date_time/dst_transition_generators.hpp:49:25: error: ‘boost::date_time::day_calc_dst_rule<spec>::date_type boost::date_time::day_calc_dst_rule<spec>::start_day(boost::date_time::day_calc_dst_rule<spec>::year_type) const [with spec = boost::local_time::nth_last_rule_spec; boost::date_time::day_calc_dst_rule<spec>::date_type = boost::gregorian::date; boost::date_time::day_calc_dst_rule<spec>::year_type = boost::gregorian::greg_year]’ can be marked override [-Werror=suggest-override]
+   49 |       virtual date_type start_day(year_type y) const
+      |                         ^~~~~~~~~
 
 ======================
-override
+override #2
 ======================
 QuantExt/qle/termstructures/inflation/cpivolatilitystructure.hpp
 QuantExt/qle/termstructures/inflation/piecewisezeroinflationcurve.hpp
-cmake/commonSettings.cmake
 
 # macos, cpivolatilitystructure.hpp, no override:
 In file included from /Users/runner/work/ore-wheels/ore-wheels/ore/QuantExt/qle/termstructures/interpolatedcpivolatilitysurface.hpp:31:
@@ -452,6 +465,13 @@ In file included from /Users/runner/work/ore-wheels/ore-wheels/ore/OREData/ored/
                      ^
 1 error generated.
 make[2]: *** [OREData/ored/CMakeFiles/OREData.dir/marketdata/inflationcurve.cpp.o] Error 1
+
+======================
+troubleshooting github actions build errors
+======================
+# error: no member named 'deseasonalisedZeroRate' in 'QuantLib::Seasonality'
+OREAnalytics/orea/scenario/scenariosimmarket.cpp:1934
+QuantLib/ql/termstructures/inflation/seasonality.hpp
 
 ======================
 missing ql commit
