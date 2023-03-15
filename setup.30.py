@@ -168,12 +168,12 @@ class my_build_ext(build_ext):
             self.libraries = [ 'advapi32' ]
 
             if self.debug:
-                if self.static:
+                if self.static or 'ORE_STATIC_RUNTIME' in os.environ:
                     extra_compile_args.append('/MTd')
                 else:
                     extra_compile_args.append('/MDd')
             else:
-                if self.static:
+                if self.static or 'ORE_STATIC_RUNTIME' in os.environ:
                     extra_compile_args.append('/MT')
                 else:
                     extra_compile_args.append('/MD')
@@ -181,23 +181,10 @@ class my_build_ext(build_ext):
         elif compiler == 'unix':
             #import pdb; pdb.set_trace()
             #os.chdir('..')
-            print("####################################################")
-            print("####################################################")
-            #os.environ['ORE']='/home/runner/work/ore-wheels/ore-wheels/ore'
-            os.environ['ORE']='/project/ore'
-            ORE=os.environ['ORE']
-            print(f'ORE={ORE}')
-            os.environ['BOOST']='/project/boost/boost'
-            BOOST=os.environ['BOOST']
-            print(f'BOOST={BOOST}')
             ql_compile_args = \
                 os.popen('../oreanalytics-config --cflags').read()[:-1].split()
-            print('ql_compile_args={}'.format(ql_compile_args))
             ql_link_args = \
                 os.popen('../oreanalytics-config --libs').read()[:-1].split()
-            print('ql_link_args={}'.format(ql_link_args))
-            print("####################################################")
-            print("####################################################")
 
             self.define += [ (arg[2:],None) for arg in ql_compile_args
                              if arg.startswith('-D') ]
@@ -274,7 +261,7 @@ classifiers = [
 ]
 
 setup(name             = "osre",
-      version          = "1.8.9.0",
+      version          = "1.8.9.1",
       description      = "Python bindings for the OREAnalytics library",
       long_description = """
 OREAnalytics (http://opensourcerisk.org/) is a C++ library for financial quantitative
@@ -298,4 +285,3 @@ framework for quantitative finance.
                           'build_ext': my_build_ext
                           }
       )
-
