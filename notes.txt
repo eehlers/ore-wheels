@@ -395,4 +395,5 @@ cmd.zlib.01.link.01.cmd - modified/hacked, works, requires MSVC command prompt /
 troubleshooting github actions build errors
 ======================
 # error: no member named 'deseasonalisedZeroRate' in 'QuantLib::Seasonality'
-OREAnalytics/orea/scenario/scenariosimmarket.cpp
+OREAnalytics/orea/scenario/scenariosimmarket.cpp:1934
+QuantLib/ql/termstructures/inflation/seasonality.hpp
