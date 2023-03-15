@@ -404,6 +404,37 @@ override
 QuantExt/qle/termstructures/inflation/cpivolatilitystructure.hpp
 QuantExt/qle/termstructures/inflation/piecewisezeroinflationcurve.hpp
 cmake/commonSettings.cmake
+
+# macos, cpivolatilitystructure.hpp, no override:
+In file included from /Users/runner/work/ore-wheels/ore-wheels/ore/QuantExt/qle/termstructures/interpolatedcpivolatilitysurface.hpp:31:
+/Users/runner/work/ore-wheels/ore-wheels/ore/QuantExt/qle/termstructures/inflation/cpivolatilitystructure.hpp:47:20: error: 'optionDateFromTenor' overrides a member function but is not marked 'override' [-Werror,-Winconsistent-missing-override]
+    QuantLib::Date optionDateFromTenor(const QuantLib::Period& tenor) const /*override*/;
+                   ^
+/Users/runner/work/ore-wheels/ore-wheels/ore/cmake/../QuantLib/ql/termstructures/voltermstructure.hpp:63:22: note: overridden virtual function is here
+        virtual Date optionDateFromTenor(const Period&) const;
+                     ^
+1 error generated.
+make[2]: *** [QuantExt/qle/CMakeFiles/QuantExt.dir/termstructures/dynamiccpivolatilitystructure.cpp.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+
+# linux, cpivolatilitystructure.hpp, no override:
+2023-03-15T10:31:55.4431117Z [ 76%] Building CXX object QuantExt/qle/CMakeFiles/QuantExt.dir/termstructures/crosscurrencypricetermstructure.cpp.o
+2023-03-15T10:31:55.4431720Z [ 76%] Building CXX object QuantExt/qle/CMakeFiles/QuantExt.dir/termstructures/datedstrippedoptionlet.cpp.o
+2023-03-15T10:31:55.4432330Z [ 76%] Building CXX object QuantExt/qle/CMakeFiles/QuantExt.dir/termstructures/datedstrippedoptionletadapter.cpp.o
+2023-03-15T10:32:02.1463361Z In file included from /project/ore/QuantExt/qle/termstructures/interpolatedcpivolatilitysurface.hpp:31,
+2023-03-15T10:32:02.1464069Z                  from /project/ore/QuantExt/qle/termstructures/dynamiccpivolatilitystructure.hpp:30,
+2023-03-15T10:32:02.1464635Z                  from /project/ore/QuantExt/qle/termstructures/dynamiccpivolatilitystructure.cpp:19:
+2023-03-15T10:32:02.1466109Z /project/ore/QuantExt/qle/termstructures/inflation/cpivolatilitystructure.hpp:47:20: error: â€˜virtual QuantLib::Date QuantExt::CPIVolatilitySurface::optionDateFromTenor(const QuantLib::Period&) constâ€™ can be marked override [-Werror=suggest-override]
+2023-03-15T10:32:02.1467293Z    47 |     QuantLib::Date optionDateFromTenor(const QuantLib::Period& tenor) const /*override*/;
+2023-03-15T10:32:02.1467686Z       |                    ^~~~~~~~~~~~~~~~~~~
+2023-03-15T10:32:04.5456895Z cc1plus: some warnings being treated as errors
+2023-03-15T10:32:04.5856683Z gmake[2]: *** [QuantExt/qle/CMakeFiles/QuantExt.dir/termstructures/dynamiccpivolatilitystructure.cpp.o] Error 1
+2023-03-15T10:32:04.5857185Z gmake[2]: *** Waiting for unfinished jobs....
+2023-03-15T10:32:11.0143362Z gmake[1]: *** [QuantExt/qle/CMakeFiles/QuantExt.dir/all] Error 2
+2023-03-15T10:32:11.0162385Z gmake: *** [all] Error 2
+2023-03-15T10:32:13.8027752Z [ 76%] Building CXX object QuantExt/qle/CMakeFiles/QuantExt.dir/termstructures/discountratiomodifiedcurve.cpp.o
+2023-03-15T10:32:13.8028612Z [ 76%] Building CXX object QuantExt/qle/CMakeFiles/QuantExt.dir/termstructures/dynamiccpivolatilitystructure.cpp.o
+
 ======================
 missing ql commit
 ======================
