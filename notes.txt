@@ -392,14 +392,7 @@ cmd.zlib.01.link.00.cmd - default command from setup.py
 cmd.zlib.01.link.01.cmd - modified/hacked, works, requires MSVC command prompt / rc.exe - why?
 
 ======================
-setup.py wrap error
+troubleshooting github actions build errors
 ======================
-OREAnalytics/oreanalytics_wrap.cpp(770571): error C2039: 'getInputs': is not a member of 'ore::analytics::OREApp'
-C:\erik\ORE\repos\ore.github\OREAnalytics\orea/app/oreapp.hpp(57): note: see declaration of 'ore::analytics::OREApp'
-OREAnalytics/oreanalytics_wrap.cpp(810827): error C2039: 'initBuilders': is not a member of 'ore::data'
-C:\erik\ORE\repos\ore.github\OREData\ored/utilities/vectorutils.hpp(29): note: see declaration of 'ore::data'
-OREAnalytics/oreanalytics_wrap.cpp(810827): error C3861: 'initBuilders': identifier not found
-
-git revert 687e82
-git revert c4455e
-
+# error: no member named 'deseasonalisedZeroRate' in 'QuantLib::Seasonality'
+OREAnalytics/orea/scenario/scenariosimmarket.cpp
