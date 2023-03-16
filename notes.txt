@@ -7,7 +7,6 @@ oreswig.00.zip - empty repo created with python module git-archive-all
 oreswig.01.zip - ran the swig wrapper, patched setup.py for ORE_STATIC_RUNTIME
 oreswig.02.zip - patched setup.py 1) look for libs in build2 directory 2) rename package to osre
 oreswig.03.zip - empty repo created with python module git-archive-all - ran swig wrapper
-                 patched ored_reports.i <- removed
 
 ore.00.tgz - raw files produced by git-archive-all
 ore.01.tgz - manually commented out docs/tests from CMakeLists.txt files - DELETEME
@@ -116,8 +115,8 @@ PROBLEMS
 ===============
 
 # make the source zip file - windows
-cd C:\erik\ORE\repos\ore.github
 #pip install git-archive-all
+cd C:\erik\ORE\repos\ore.github
 C:\Users\eric.ehlers\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\Scripts\git-archive-all ore.zip
 cd C:\erik\ORE\repos\oreswig.github
 C:\Users\eric.ehlers\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\Scripts\git-archive-all oreswig.zip
@@ -328,24 +327,22 @@ cmake --build . -j 4
 IOSTREAMS
 ================
 
-SET DEMO_BOOST_ROOT=C:\erik\ORE\repos\boost2\boost
-SET DEMO_BOOST_LIB=C:\erik\ORE\repos\boost2\boost\lib64-msvc-14.3
-
-SET DEMO_ORE_DIR=C:\erik\ORE\repos\ore.gitlab
-
 SET ZLIB_ROOT=C:\erik\ORE\repos\zlib-install
 SET ZLIB_ROOT=C:\erik\ORE\repos\vcpkg\packages\zlib_x64-windows
 
-SET DEMO_BOOST_ROOT=C:\erik\ORE\repos\boost2\boost
-SET DEMO_BOOST_LIB=C:\erik\ORE\repos\boost2\boost\lib64-msvc-14.3
-
-# gitlab
-SET DEMO_BOOST_ROOT=C:\erik\ORE\repos\boost2\boost
-SET DEMO_BOOST_LIB=C:\erik\ORE\repos\boost2\boost\lib64-msvc-14.3
+# oreplus
+SET DEMO_BOOST_ROOT=C:\erik\ORE\repos\boost\boost_1_81_0
+SET DEMO_BOOST_LIB=C:\erik\ORE\repos\boost\boost_1_81_0\lib64-msvc-14.3
 SET DEMO_SWIG_DIR=C:\erik\ORE\repos\swigwin-4.1.1
 SET DEMO_ORE_DIR=C:\erik\ORE\repos\oreplus\ore
 SET DEMO_ORE_SWIG_DIR=C:\erik\ORE\repos\oreswig.gitlab
-#SET ZLIB_ROOT=C:\erik\ORE\repos\vcpkg\packages\zlib_x64-windows
+
+# gitlab
+SET DEMO_BOOST_ROOT=C:\erik\ORE\repos\boost\boost_1_81_0
+SET DEMO_BOOST_LIB=C:\erik\ORE\repos\boost\boost_1_81_0\lib64-msvc-14.3
+SET DEMO_SWIG_DIR=C:\erik\ORE\repos\swigwin-4.1.1
+SET DEMO_ORE_DIR=C:\erik\ORE\repos\ore.gitlab
+SET DEMO_ORE_SWIG_DIR=C:\erik\ORE\repos\oreswig.gitlab
 
 # github
 SET DEMO_BOOST_ROOT=C:\erik\ORE\repos\boost\boost_1_81_0
@@ -353,9 +350,8 @@ SET DEMO_BOOST_LIB=C:\erik\ORE\repos\boost\boost_1_81_0\lib64-msvc-14.3
 SET DEMO_SWIG_DIR=C:\erik\ORE\repos\swigwin-4.1.1
 SET DEMO_ORE_DIR=C:\erik\ORE\repos\ore.github
 SET DEMO_ORE_SWIG_DIR=C:\erik\ORE\repos\oreswig.github
-#SET ZLIB_ROOT=C:\erik\ORE\repos\vcpkg\packages\zlib_x64-windows
 
-# test1
+# zip
 SET DEMO_BOOST_ROOT=C:\erik\ORE\repos\boost\boost_1_81_0
 SET DEMO_BOOST_LIB=C:\erik\ORE\repos\boost\boost_1_81_0\lib64-msvc-14.3
 SET DEMO_SWIG_DIR=C:\erik\ORE\repos\swigwin-4.1.1

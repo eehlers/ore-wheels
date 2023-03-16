@@ -29,7 +29,6 @@ jobs:
         Boost_ROOT: C:\local\boost
       run: |
         Expand-Archive -Path ore.02.zip -DestinationPath C:\local
-        copy inmemoryreport.hpp C:\local\ore\OREData\ored\report\inmemoryreport.hpp
         cd C:\local\ore
         mkdir build
         cd build
