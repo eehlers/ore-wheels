@@ -14,7 +14,6 @@ echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 tar xfz ore.03.tgz
 # Patch a bug in our copy of quantlib
 cp exchangerate.hpp ore/QuantLib/ql
-cp inmemoryreport.hpp ore/OREData/ored/report/inmemoryreport.hpp
 tar xfz oreswig.02.tgz
 cp setup.22.py oreswig/OREAnalytics-SWIG/Python/setup.py
 cp oreanalytics-config.22 oreswig/OREAnalytics-SWIG/oreanalytics-config

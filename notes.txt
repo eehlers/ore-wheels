@@ -122,8 +122,8 @@ cd C:\erik\ORE\repos\oreswig.github
 C:\Users\eric.ehlers\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\Scripts\git-archive-all oreswig.zip
 
 # make the source zip file - linux
-cd /home/erik/quaternion/ore
 #pip install git-archive-all
+cd /home/erik/quaternion/ore
 git-archive-all ore.tgz
 cd /home/erik/quaternion/oreswig
 git-archive-all oreswig.tgz
