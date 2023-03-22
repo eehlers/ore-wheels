@@ -16,10 +16,10 @@ jobs:
         pwd
         #tar xfz ore.00.tgz
         #tar xfz ore.02.tgz
-        tar xfz ore.03.tgz
-        cp exchangerate.hpp ore/QuantLib/ql
+        tar xfz ore.tgz
+        #cp exchangerate.hpp ore/QuantLib/ql
         #tar xfz oreswig.01.tgz
-        tar xfz oreswig.02.tgz
+        tar xfz oreswig.tgz
         cp setup.30.py oreswig/OREAnalytics-SWIG/Python/setup.py
         cp oreanalytics-config.30 oreswig/OREAnalytics-SWIG/oreanalytics-config
         cd ore
