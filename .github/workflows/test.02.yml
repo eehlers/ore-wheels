@@ -28,7 +28,7 @@ jobs:
       env:
         Boost_ROOT: C:\local\boost
       run: |
-        Expand-Archive -Path ore.02.zip -DestinationPath C:\local
+        Expand-Archive -Path ore.zip -DestinationPath C:\local
         cd C:\local\ore
         mkdir build
         cd build
@@ -36,7 +36,7 @@ jobs:
         cmake --build . --config Release --verbose
     - name: Unpack ORE-SWIG
       run: |
-        Expand-Archive -Path oreswig.03.zip -DestinationPath .
+        Expand-Archive -Path oreswig.zip -DestinationPath .
         copy setup.02.py oreswig/OREAnalytics-SWIG/Python/setup.py
     - name: Build ORE wheels
       uses: pypa/cibuildwheel@v2.11.1
