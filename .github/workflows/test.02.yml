@@ -32,6 +32,7 @@ jobs:
         copy referencedatafactory.hpp C:\local\ore\OREData\ored\portfolio\referencedatafactory.hpp
         copy tradefactory.hpp C:\local\ore\OREData\ored\portfolio\tradefactory.hpp
         copy calendarparser.hpp C:\local\ore\OREData\ored\utilities\calendarparser.hpp
+        copy currencyparser.hpp C:\local\ore\OREData\ored\utilities\currencyparser.hpp
         cd C:\local\ore
         mkdir build
         cd build
