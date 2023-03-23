@@ -29,6 +29,7 @@ jobs:
         Boost_ROOT: C:\local\boost
       run: |
         Expand-Archive -Path ore.zip -DestinationPath C:\local
+        copy referencedatafactory.cpp C:\local\ore\OREData\ored\portfolio\referencedatafactory.cpp
         cd C:\local\ore
         mkdir build
         cd build
