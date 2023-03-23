@@ -31,6 +31,7 @@ jobs:
         Expand-Archive -Path ore.zip -DestinationPath C:\local
         copy referencedatafactory.hpp C:\local\ore\OREData\ored\portfolio\referencedatafactory.hpp
         copy tradefactory.hpp C:\local\ore\OREData\ored\portfolio\tradefactory.hpp
+        copy calendarparser.hpp C:\local\ore\OREData\ored\portfolio\calendarparser.hpp
         cd C:\local\ore
         mkdir build
         cd build
