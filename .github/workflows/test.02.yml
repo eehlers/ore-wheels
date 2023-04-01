@@ -29,10 +29,6 @@ jobs:
         Boost_ROOT: C:\local\boost
       run: |
         Expand-Archive -Path ore.zip -DestinationPath C:\local
-        copy referencedatafactory.hpp C:\local\ore\OREData\ored\portfolio\referencedatafactory.hpp
-        copy tradefactory.hpp C:\local\ore\OREData\ored\portfolio\tradefactory.hpp
-        copy calendarparser.hpp C:\local\ore\OREData\ored\utilities\calendarparser.hpp
-        copy currencyparser.hpp C:\local\ore\OREData\ored\utilities\currencyparser.hpp
         cd C:\local\ore
         mkdir build
         cd build
@@ -41,7 +37,6 @@ jobs:
     - name: Unpack ORE-SWIG
       run: |
         Expand-Archive -Path oreswig.zip -DestinationPath .
-        copy setup.02.py oreswig/OREAnalytics-SWIG/Python/setup.py
     - name: Build ORE wheels
       uses: pypa/cibuildwheel@v2.11.1
       env:
