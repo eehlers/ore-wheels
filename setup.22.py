@@ -74,7 +74,7 @@ class my_wrap(Command):
                       '-I%s ' % ql_swig_dir +
                       '-I%s ' % qle_swig_dir +
                       '-I%s ' % oredata_swig_dir +
-                      '-outdir OREAnalytics -o OREAnalytics/oreanalytics_wrap.cpp ' +
+                      '-outdir OREAnalyticsPython -o OREAnalyticsPython/oreanalytics_wrap.cpp ' +
                       'oreanalytics.i')
         else:
             os.system('swig -python -c++ ' +
@@ -82,7 +82,7 @@ class my_wrap(Command):
                       '-I%s ' % ql_swig_dir +
                       '-I%s ' % qle_swig_dir +
                       '-I%s ' % oredata_swig_dir +
-                      '-outdir OREAnalytics -o OREAnalytics/oreanalytics_wrap.cpp ' +
+                      '-outdir OREAnalyticsPython -o OREAnalyticsPython/oreanalytics_wrap.cpp ' +
                       'oreanalytics.i')
 
 class my_build(build):
@@ -276,9 +276,9 @@ framework for quantitative finance.
       license          = codecs.open('../../LICENSE.txt','r+',
                                      encoding='utf8').read(),
       classifiers      = classifiers,
-      py_modules       = ['OREAnalytics.__init__','OREAnalytics.OREAnalytics'],
-      ext_modules      = [Extension("OREAnalytics._OREAnalytics",
-                                    ["OREAnalytics/oreanalytics_wrap.cpp"])
+      py_modules       = ['OREAnalyticsPython.__init__','OREAnalyticsPython.OREAnalyticsPython'],
+      ext_modules      = [Extension("OREAnalyticsPython._OREAnalyticsPython",
+                                    ["OREAnalyticsPython/oreanalytics_wrap.cpp"])
                          ],
       data_files       = datafiles,
       cmdclass         = {'test': test,
