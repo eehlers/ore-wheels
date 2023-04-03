@@ -153,3 +153,74 @@ cibuildwheel --platform windows
 deactivate
 rmdir /s /q env1
 
+# LINUX ('l)
+
+export DEMO_BOOST_DIR=/home/erik/repos/boost/install
+export DEMO_ORE_DIR=/home/erik/repos/oreplus/ore
+export DEMO_ORE_SWIG_DIR=/home/erik/repos/oreswig
+
+#export BOOST_INC=/home/erik/repos/boost/install/include
+#export BOOST_LIB=/home/erik/repos/boost/install/lib
+export BOOST_ROOT=/home/erik/repos/boost/install
+
+# ore - configure
+
+cd $DEMO_ORE_DIR
+mkdir build
+cd $DEMO_ORE_DIR/build
+cmake .. -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_BENCHMARK=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF -DBoost_NO_WARN_NEW_VERSIONS=1 -DBoost_NO_SYSTEM_PATHS=1 -DBOOST_ROOT=$DEMO_BOOST_DIR
+
+# ore - build
+
+cd $DEMO_ORE_DIR/build
+cmake --build .
+
+# oreswig - cmake
+
+cd $DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python
+mkdir build
+cd $DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python/build
+export BOOST_INCLUDEDIR=$DEMO_BOOST_DIR/include
+export BOOST_LIBRARYDIR=$DEMO_BOOST_DIR/lib
+export PATH=$PATH%;$DEMO_SWIG_DIR
+REM SET SWIG_ROOT=$DEMO_SWIG_DIR
+cmake .. -DORE=$DEMO_ORE_DIR
+cmake --build .
+cmake --build . --clean-first --verbose > out.release.txt 2>&1
+
+# Use the wrapper
+
+cd $DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python/Examples
+export PYTHONPATH=$DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python/build
+export LD_LIBRARY_PATH=$DEMO_ORE_DIR/build/OREAnalytics/orea:$DEMO_ORE_DIR/build/OREData/ored:$DEMO_ORE_DIR/build/QuantExt/qle:$DEMO_ORE_DIR/build/QuantLib/ql:$DEMO_BOOST_DIR/lib
+python3 swap.py
+
+# oreswig - python
+
+cd $DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python
+export ORE=$DEMO_ORE_DIR
+export BOOST_LIB=$DEMO_BOOST_DIR/lib
+export BOOST_INC=$DEMO_BOOST_DIR/include
+python3 setup.py wrap
+python3 setup.py build
+python3 -m build --wheel
+
+-DBoost_USE_MULTITHREADED=OFF
+
+# Use the wrapper
+
+cd $DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python/Examples
+export PYTHONPATH=$DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python/build/lib.linux-x86_64-3.10/ORE
+export LD_LIBRARY_PATH=$DEMO_ORE_DIR/build/OREAnalytics/orea:$DEMO_ORE_DIR/build/OREData/ored:$DEMO_ORE_DIR/build/QuantExt/qle:$DEMO_ORE_DIR/build/QuantLib/ql:$DEMO_BOOST_DIR/lib
+python3 swap.py
+
+# Use the wheel
+
+cd $DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python/Examples
+python3 -m venv env1
+. ./env1/bin/activate
+pip install $DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python/dist/osre-1.8.9.1-cp310-cp310-linux_x86_64.whl
+python3 swap.py
+deactivate
+rm -rf env1
+
