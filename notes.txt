@@ -1,4 +1,5 @@
 
+
 # WHEELS ('w)
 
 # gitlab - oreplus
@@ -36,6 +37,8 @@ mkdir build
 cd %DEMO_ORE_DIR%\build
 set BOOST_INCLUDEDIR=%DEMO_BOOST_ROOT%
 set BOOST_LIBRARYDIR=%DEMO_BOOST_LIB%
+SET ZLIB_ROOT=C:\repos\vcpkg\packages\zlib_x64-windows
+*********** fixme disable unneeded parts of build
 cmake -DBoost_NO_WARN_NEW_VERSIONS=1 -Wno-dev -G "Visual Studio 17 2022" -A x64 ..
 cmake -DBoost_NO_WARN_NEW_VERSIONS=1 -Wno-dev -G "Visual Studio 17 2022" -A x64 .. -DMSVC_LINK_DYNAMIC_RUNTIME=OFF 
 cmake -DBoost_NO_WARN_NEW_VERSIONS=1 -Wno-dev -G "Visual Studio 17 2022" -A x64 .. -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_BENCHMARK=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF
@@ -63,11 +66,6 @@ cmake --build . --config Release
 cmake --build . --config Release --clean-first --verbose > out.release.txt 2>&1
 cmake --build . --config Debug
 cmake --build . --config Debug --clean-first --verbose > out.debug.txt 2>&1
-
-# visual studio command line
-
-cd C:\repos\oreswig.gitlab\OREAnalytics-SWIG\Python\buildNormal
-build.00.link.bat
 
 # use the wrapper
 
