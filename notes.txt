@@ -163,6 +163,9 @@ export DEMO_ORE_SWIG_DIR=/home/erik/repos/oreswig
 #export BOOST_LIB=/home/erik/repos/boost/install/lib
 export BOOST_ROOT=/home/erik/repos/boost/install
 
+export BOOST_INCLUDEDIR=/usr/include
+export BOOST_LIBRARYDIR=/usr/lib/x86_64-linux-gnu
+
 # ore - configure
 
 cd $DEMO_ORE_DIR
