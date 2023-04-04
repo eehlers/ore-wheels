@@ -153,9 +153,15 @@ rmdir /s /q env1
 
 # LINUX ('l)
 
+# oreplus
 export DEMO_BOOST_DIR=/home/erik/repos/boost/install
 export DEMO_ORE_DIR=/home/erik/repos/oreplus/ore
 export DEMO_ORE_SWIG_DIR=/home/erik/repos/oreswig
+
+# github
+export DEMO_BOOST_DIR=/home/erik/repos/boost/install
+export DEMO_ORE_DIR=/home/erik/repos/ore.github
+export DEMO_ORE_SWIG_DIR=/home/erik/repos/oreswig.github
 
 #export BOOST_INC=/home/erik/repos/boost/install/include
 #export BOOST_LIB=/home/erik/repos/boost/install/lib
@@ -223,4 +229,11 @@ pip install $DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python/dist/osre-1.8.9.1-cp310-
 python3 swap.py
 deactivate
 rm -rf env1
+
+# make the source zip file - linux
+#pip install git-archive-all
+cd $DEMO_ORE_DIR
+git-archive-all ore.tgz
+cd $DEMO_ORE_SWIG_DIR
+git-archive-all oreswig.tgz
 
