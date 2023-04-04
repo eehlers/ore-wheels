@@ -63,9 +63,7 @@ REM SET SWIG_ROOT=%DEMO_SWIG_DIR%
 cmake -Wno-dev -G "Visual Studio 17 2022" -A x64 .. -DORE=%DEMO_ORE_DIR%
 cmake -Wno-dev -G "Visual Studio 17 2022" -A x64 .. -DORE=%DEMO_ORE_DIR% -DMSVC_LINK_DYNAMIC_RUNTIME=OFF 
 cmake --build . --config Release
-cmake --build . --config Release --clean-first --verbose > out.release.txt 2>&1
 cmake --build . --config Debug
-cmake --build . --config Debug --clean-first --verbose > out.debug.txt 2>&1
 
 # use the wrapper
 
