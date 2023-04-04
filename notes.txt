@@ -187,7 +187,6 @@ export PATH=$PATH%;$DEMO_SWIG_DIR
 REM SET SWIG_ROOT=$DEMO_SWIG_DIR
 cmake .. -DORE=$DEMO_ORE_DIR
 cmake --build .
-cmake --build . --clean-first --verbose > out.release.txt 2>&1
 
 # Use the wrapper
 
