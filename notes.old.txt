@@ -101,62 +101,6 @@ cd $DEMO_ORE_SWIG_DIR/buildOREAnalytics-SWIG
 cmake --build .
 -> $DEMO_ORE_SWIG_DIR/buildOREAnalytics-SWIG/_OREAnalytics.so
 
-=========
-https://test.pypi.org/
-=========
-
-# UPLOAD - WINDOWS
-C:\Users\eric.ehlers\.pypirc
-#python -m pip install --upgrade pip
-#python -m pip install --upgrade twine
-cd C:\erik\projects\wheel\wheels\ore
-python -m twine upload --repository testpypi *.whl
-
-# INSTALL - WINDOWS
-pip install -i https://test.pypi.org/simple/ OREAnalytics-Python==1.8.3.2
-
-# UPLOAD - LINUX
-/home/erik/.pypirc
-#python3 -m pip install --upgrade pip
-#python3 -m pip install --upgrade twine
-cd /home/erik/quaternion/wheels
-python3 -m twine upload --repository testpypi *.whl
-
-# INSTALL - LINUX
-cd /home/erik/quaternion/oreswig.eehlers/OREAnalytics-SWIG/Python/Examples
-python3 -m venv env1
-. ./env1/bin/activate
-pip install /home/erik/quaternion/wheels/OREAnalytics_Python-1.8.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-pip install -i https://test.pypi.org/simple/ OREAnalytics-Python==1.8.3.2
-python3 commodityforward.py
-deactivate
-rm -rf env1
-
-=========
-https://pypi.org/
-=========
-
-# UPLOAD - WINDOWS
-cd C:\erik\projects\wheel\wheels2
-#twine upload -r pypi --sign xxx
-twine upload -r pypi xxx
-
-# INSTALL - WINDOWS
-cd %DEMO_ORE_SWIG_DIR%\OREAnalytics-SWIG\Python\Examples
-python -m venv env1
-.\env1\Scripts\activate.bat
-pip install %DEMO_ORE_SWIG_DIR%\OREAnalytics-SWIG\Python\dist\OREAnalytics_Python-1.8.3.2-cp310-cp310-win_amd64.whl
-pip install open-source-risk-engine
-python swap.py
-deactivate
-rmdir /s /q env1
-
-# UPLOAD - LINUX
-cd /home/erik/quaternion/wheels2
-twine upload -r pypi *whl
-
-# INSTALL - LINUX
-
 ========
 PROBLEMS
 ========
@@ -170,44 +114,6 @@ PROBLEMS
 - timeout:
   "The job running on runner GitHub Actions 2 has exceeded the maximum execution time of 360 minutes."
 - boost libs on macos - symbolic link
-
-=====================================
-  [ 66%] Building CXX object QuantExt/qle/CMakeFiles/QuantExt.dir/instruments/commodityspreadoption.cpp.o
-  [ 66%] Building CXX object QuantExt/qle/CMakeFiles/QuantExt.dir/instruments/crossccybasismtmresetswap.cpp.o
-  In file included from /project/ore/QuantExt/qle/instruments/fxforward.hpp:29,
-                   from /project/ore/QuantExt/qle/instruments/fxforward.cpp:21:
-  /project/ore/QuantLib/ql/exchangerate.hpp: In member function 'virtual void QuantExt::FxForward::setupExpired() const':
-  /project/ore/QuantLib/ql/exchangerate.hpp:38:11: error: '<anonymous>.QuantLib::ExchangeRate::type_' is used uninitialized in this function [-Werror=uninitialized]
-     38 |     class ExchangeRate {
-        |           ^~~~~~~~~~~~
-  /project/ore/QuantLib/ql/exchangerate.hpp: In member function 'virtual void QuantExt::FxForward::results::reset()':
-  /project/ore/QuantLib/ql/exchangerate.hpp:38:11: error: '<anonymous>.QuantLib::ExchangeRate::type_' is used uninitialized in this function [-Werror=uninitialized]
-     38 |     class ExchangeRate {
-        |           ^~~~~~~~~~~~
-  cc1plus: some warnings being treated as errors
-  make[2]: *** [QuantExt/qle/CMakeFiles/QuantExt.dir/build.make:1504: QuantExt/qle/CMakeFiles/QuantExt.dir/instruments/fxforward.cpp.o] Error 1
-  make[1]: *** [CMakeFiles/Makefile2:2072: QuantExt/qle/CMakeFiles/QuantExt.dir/all] Error 2
-  make: *** [Makefile:166: all] Error 2
-  [ 66%] Building CXX object QuantExt/qle/CMakeFiles/QuantExt.dir/instruments/crossccybasisswap.cpp.o
-  [ 66%] Building CXX object QuantExt/qle/CMakeFiles/QuantExt.dir/instruments/crossccyfixfloatmtmresetswap.cpp.o
-  [ 66%] Building CXX object QuantExt/qle/CMakeFiles/QuantExt.dir/instruments/crossccyfixfloatswap.cpp.o
-=====================================
-
-===============
-
-# make the source zip file - windows
-#pip install git-archive-all
-cd C:\erik\ORE\repos\ore.github
-C:\Users\eric.ehlers\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\Scripts\git-archive-all ore.zip
-cd C:\erik\ORE\repos\oreswig.github
-C:\Users\eric.ehlers\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\Scripts\git-archive-all oreswig.zip
-
-# make the source zip file - linux
-#pip install git-archive-all
-cd /home/erik/quaternion/ore
-git-archive-all ore.tgz
-cd /home/erik/quaternion/oreswig
-git-archive-all oreswig.tgz
 
 ===============
 # simulate the job - Windows
@@ -236,16 +142,41 @@ SET BOOST_ROOT=C:\local\boost
 # build oreswig
 "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
 cd C:\local\oreswig\OREAnalytics-SWIG\Python
-set BOOST_ROOT=C:\local\boost
-set BOOST_LIB=C:\local\boost\lib64-msvc-14.3
-set ORE_DIR=C:\local\ore
-set PATH=%PATH%;C:\erik\ORE\repos\swigwin-4.1.1
+SET BOOST_ROOT=C:\local\boost
+SET BOOST_LIB=C:\local\boost\lib64-msvc-14.3
+SET ORE_DIR=C:\local\ore
+SET PATH=%PATH%;C:\erik\ORE\repos\swigwin-4.1.1
 python setup.py build
 python setup.py test
 #pip install build
 python -m build --wheel
 
 ####################################################
+# run cibuildwheels locally - windows
+
+cd C:\erik\ORE\repos\oreswig.github\OREAnalytics-SWIG\Python
+python -m venv env1
+.\env1\Scripts\activate.bat
+pip install cibuildwheel
+
+SET BOOST_ROOT=%DEMO_BOOST_ROOT%
+SET BOOST_LIB=%DEMO_BOOST_LIB%
+SET ORE_DIR=%DEMO_ORE_DIR%
+SET PATH=%PATH%;%DEMO_SWIG_DIR%
+SET ORE_STATIC_RUNTIME=1
+
+SET CIBW_BUILD=cp310-win_amd64
+SET CIBW_ARCHS_WINDOWS=AMD64
+SET CIBW_BUILD_VERBOSITY=2
+
+SET CIBW_BUILD=cp37-win32
+SET CIBW_ARCHS_WINDOWS=x86
+SET CIBW_BUILD_VERBOSITY=2
+
+cibuildwheel --platform windows
+deactivate
+rmdir /s /q env1
+
 # run cibuildwheels locally - linux
 
 # ATTEMPT #1
@@ -292,37 +223,6 @@ rm -rf env1
 /host/home/erik/quaternion/ore.eehlers/build/QuantExt/qle
 /host/home/erik/quaternion/ore.eehlers/build/OREData/ored
 
-# run cibuildwheels locally - windows
-
-cd C:\erik\ORE\repos\oreswig.github\OREAnalytics-SWIG\Python
-python -m venv env1
-.\env1\Scripts\activate.bat
-pip install cibuildwheel
-
-SET DEMO_BOOST_ROOT=C:\erik\ORE\repos\boost\boost_1_81_0
-SET DEMO_BOOST_LIB=C:\erik\ORE\repos\boost\boost_1_81_0\lib64-msvc-14.3
-SET DEMO_SWIG_DIR=C:\erik\ORE\repos\swigwin-4.1.1
-SET DEMO_ORE_DIR=C:\erik\ORE\repos\ore.github
-SET DEMO_ORE_SWIG_DIR=C:\erik\ORE\repos\oreswig.github
-
-set BOOST_ROOT=%DEMO_BOOST_ROOT%
-set BOOST_LIB=%DEMO_BOOST_LIB%
-set ORE_DIR=%DEMO_ORE_DIR%
-set PATH=%PATH%;%DEMO_SWIG_DIR%
-set ORE_STATIC_RUNTIME=1
-
-SET CIBW_BUILD=cp310-win_amd64
-SET CIBW_ARCHS_WINDOWS=AMD64
-SET CIBW_BUILD_VERBOSITY=2
-
-SET CIBW_BUILD=cp37-win32
-SET CIBW_ARCHS_WINDOWS=x86
-SET CIBW_BUILD_VERBOSITY=2
-
-cibuildwheel --platform windows
-deactivate
-rmdir /s /q env1
-
 ####################################################
 # ninja
 
@@ -344,11 +244,11 @@ my cmake complains about boost version >= 1.81.0
 BOOST_LIBRARYDIR
 
 CMake Warning (dev) at OREData/CMakeLists.txt:14 (find_package):
-  Policy CMP0074 is not set: find_package uses <PackageName>_ROOT variables.
+  Policy CMP0074 is not SET: find_package uses <PackageName>_ROOT variables.
   Run "cmake --help-policy CMP0074" for policy details.  Use the cmake_policy
-  command to set the policy and suppress this warning.
+  command to SET the policy and suppress this warning.
 
-  Environment variable Boost_ROOT is set to:
+  Environment variable Boost_ROOT is SET to:
 
     C:\local\boost
 
@@ -386,67 +286,4 @@ cmake/commonSettings.cmake
 OREAnalytics/CMakeLists.txt
 find_package (Boost REQUIRED COMPONENTS unit_test_framework regex date_time thread serialization system filesystem timer OPTIONAL_COMPONENTS chrono)
 cmake --build . -j 4
-
-================
-IOSTREAMS
-================
-
-SET ZLIB_ROOT=C:\erik\ORE\repos\zlib-install
-SET ZLIB_ROOT=C:\erik\ORE\repos\vcpkg\packages\zlib_x64-windows
-
-# oreplus
-SET DEMO_BOOST_ROOT=C:\erik\ORE\repos\boost\boost_1_81_0
-SET DEMO_BOOST_LIB=C:\erik\ORE\repos\boost\boost_1_81_0\lib64-msvc-14.3
-SET DEMO_SWIG_DIR=C:\erik\ORE\repos\swigwin-4.1.1
-SET DEMO_ORE_DIR=C:\erik\ORE\repos\oreplus\ore
-SET DEMO_ORE_SWIG_DIR=C:\erik\ORE\repos\oreswig.gitlab
-
-# gitlab
-SET DEMO_BOOST_ROOT=C:\erik\ORE\repos\boost\boost_1_81_0
-SET DEMO_BOOST_LIB=C:\erik\ORE\repos\boost\boost_1_81_0\lib64-msvc-14.3
-SET DEMO_SWIG_DIR=C:\erik\ORE\repos\swigwin-4.1.1
-SET DEMO_ORE_DIR=C:\erik\ORE\repos\ore.gitlab
-SET DEMO_ORE_SWIG_DIR=C:\erik\ORE\repos\oreswig.gitlab
-
-# github
-SET DEMO_BOOST_ROOT=C:\erik\ORE\repos\boost\boost_1_81_0
-SET DEMO_BOOST_LIB=C:\erik\ORE\repos\boost\boost_1_81_0\lib64-msvc-14.3
-SET DEMO_SWIG_DIR=C:\erik\ORE\repos\swigwin-4.1.1
-SET DEMO_ORE_DIR=C:\erik\ORE\repos\ore.github
-SET DEMO_ORE_SWIG_DIR=C:\erik\ORE\repos\oreswig.github
-
-# zip
-SET DEMO_BOOST_ROOT=C:\erik\ORE\repos\boost\boost_1_81_0
-SET DEMO_BOOST_LIB=C:\erik\ORE\repos\boost\boost_1_81_0\lib64-msvc-14.3
-SET DEMO_SWIG_DIR=C:\erik\ORE\repos\swigwin-4.1.1
-SET DEMO_ORE_DIR=C:\erik\ORE\repos\ore.github
-SET DEMO_ORE_SWIG_DIR=C:\erik\projects\wheel\zips\oreswig
-
-cd C:\erik\ORE\repos\zlib-1.2.13
-mkdir build
-cd build
-"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_INSTALL_PREFIX=C:\erik\ORE\repos\zlib-install -G "Visual Studio 17 2022" -A x64 ..
-"C:\Program Files\CMake\bin\cmake.exe" --build . --config Release
-"C:\Program Files\CMake\bin\cmake.exe" --install .
-
-C:\erik\ORE\repos\zlib-install\lib
-/LIBPATH:C:\erik\ORE\repos\zlib-install\lib
-
-# PROJECT #1
-
-# boost
-cd C:\erik\projects\empty\iostream\boost0\boost_1_81_0
-C:\erik\ORE\repos\boost\install\b2.exe --with-iostreams --build-dir=C:\erik\ORE\repos\boost\build --stagedir=.\lib\x64 toolset=msvc-14.3 address-model=64 runtime-link=static stage
-
-set BOOST_INCLUDEDIR=C:\erik\ORE\repos\boost2\boost
-set BOOST_LIBRARYDIR=C:\erik\ORE\repos\boost2\boost\lib64-msvc-14.3
-"C:\Program Files\CMake\bin\cmake.exe" -DBoost_NO_WARN_NEW_VERSIONS=1 -G "Visual Studio 17 2022" -A x64 ..
-"C:\Program Files\CMake\bin\cmake.exe" -DBoost_NO_WARN_NEW_VERSIONS=1 -G "Visual Studio 17 2022" -A x64 .. --fresh
-"C:\Program Files\CMake\bin\cmake.exe" --build . --config Release
-"C:\Program Files\CMake\bin\cmake.exe" --build . --config Release --verbose
-
-/c/erik/ORE/repos/oreswig.gitlab/OREAnalytics-SWIG/Python
-# with zlib / dynamic linking
-cmd.zlib.01.link.00.cmd - default command from setup.py
-cmd.zlib.01.link.01.cmd - modified/hacked, works, requires MSVC command prompt / rc.exe - why?
 
