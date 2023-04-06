@@ -32,7 +32,7 @@ jobs:
         cd C:\local\ore
         mkdir build
         cd build
-        cmake -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_BENCHMARK=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF -DMSVC_LINK_DYNAMIC_RUNTIME=OFF -G "Visual Studio 17 2022" -A ${{ matrix.platform }} ..
+        cmake -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_BENCHMARK=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF -DCMAKE_BUILD_TYPE=Release -DMSVC_LINK_DYNAMIC_RUNTIME=OFF -G "Visual Studio 17 2022" -A ${{ matrix.platform }} ..
         cmake --build . --config Release --verbose
     - name: Unpack ORE-SWIG
       run: |
