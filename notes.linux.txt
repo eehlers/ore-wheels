@@ -1,27 +1,21 @@
 
 # oreplus
-export DEMO_BOOST_DIR=/home/erik/repos/boost/install
-export DEMO_ORE_DIR=/home/erik/repos/oreplus/ore
-export DEMO_ORE_SWIG_DIR=/home/erik/repos/oreswig
+DEMO_BOOST_INC=/home/erik/repos/boost/install/include
+DEMO_BOOST_LIB=/home/erik/repos/boost/install/lib
+DEMO_ORE_DIR=/home/erik/repos/oreplus/ore
+DEMO_ORE_SWIG_DIR=/home/erik/repos/oreswig
 
-# github
-export DEMO_BOOST_DIR=/home/erik/repos/boost/install
-export DEMO_ORE_DIR=/home/erik/repos/ore.github
-export DEMO_ORE_SWIG_DIR=/home/erik/repos/oreswig.github
-
-#export BOOST_INC=/home/erik/repos/boost/install/include
-#export BOOST_LIB=/home/erik/repos/boost/install/lib
-export BOOST_ROOT=/home/erik/repos/boost/install
-
-export BOOST_INCLUDEDIR=/usr/include
-export BOOST_LIBRARYDIR=/usr/lib/x86_64-linux-gnu
+DEMO_BOOST_INC=/usr/include
+DEMO_BOOST_LIB=/usr/lib/x86_64-linux-gnu
 
 # ore - configure
 
 cd $DEMO_ORE_DIR
 mkdir build
 cd $DEMO_ORE_DIR/build
-cmake .. -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_BENCHMARK=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF -DBoost_NO_WARN_NEW_VERSIONS=1 -DBoost_NO_SYSTEM_PATHS=1 -DBOOST_ROOT=$DEMO_BOOST_DIR
+export BOOST_INCLUDEDIR=$DEMO_BOOST_INC
+export BOOST_LIBRARYDIR=$DEMO_BOOST_LIB
+cmake .. -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_BENCHMARK=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF -DBoost_NO_WARN_NEW_VERSIONS=1 -DBoost_NO_SYSTEM_PATHS=1
 
 # ore - build
 
@@ -33,10 +27,8 @@ cmake --build .
 cd $DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python
 mkdir build
 cd $DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python/build
-export BOOST_INCLUDEDIR=$DEMO_BOOST_DIR/include
-export BOOST_LIBRARYDIR=$DEMO_BOOST_DIR/lib
-export PATH=$PATH%;$DEMO_SWIG_DIR
-REM SET SWIG_ROOT=$DEMO_SWIG_DIR
+export BOOST_INCLUDEDIR=$DEMO_BOOST_INC
+export BOOST_LIBRARYDIR=$DEMO_BOOST_LIB
 cmake .. -DORE=$DEMO_ORE_DIR
 cmake --build .
 
@@ -44,15 +36,15 @@ cmake --build .
 
 cd $DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python/Examples
 export PYTHONPATH=$DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python/build
-export LD_LIBRARY_PATH=$DEMO_ORE_DIR/build/OREAnalytics/orea:$DEMO_ORE_DIR/build/OREData/ored:$DEMO_ORE_DIR/build/QuantExt/qle:$DEMO_ORE_DIR/build/QuantLib/ql:$DEMO_BOOST_DIR/lib
+export LD_LIBRARY_PATH=$DEMO_ORE_DIR/build/OREAnalytics/orea:$DEMO_ORE_DIR/build/OREData/ored:$DEMO_ORE_DIR/build/QuantExt/qle:$DEMO_ORE_DIR/build/QuantLib/ql:$DEMO_BOOST_LIB
 python3 swap.py
 
 # oreswig - setup.py
 
 cd $DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python
+export BOOST_INC=$DEMO_BOOST_INC
+export BOOST_LIB=$DEMO_BOOST_LIB
 export ORE=$DEMO_ORE_DIR
-export BOOST_LIB=$DEMO_BOOST_DIR/lib
-export BOOST_INC=$DEMO_BOOST_DIR/include
 python3 setup.py wrap
 python3 setup.py build
 python3 -m build --wheel
@@ -63,7 +55,7 @@ python3 -m build --wheel
 
 cd $DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python/Examples
 export PYTHONPATH=$DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python/build/lib.linux-x86_64-3.10/ORE
-export LD_LIBRARY_PATH=$DEMO_ORE_DIR/build/OREAnalytics/orea:$DEMO_ORE_DIR/build/OREData/ored:$DEMO_ORE_DIR/build/QuantExt/qle:$DEMO_ORE_DIR/build/QuantLib/ql:$DEMO_BOOST_DIR/lib
+export LD_LIBRARY_PATH=$DEMO_ORE_DIR/build/OREAnalytics/orea:$DEMO_ORE_DIR/build/OREData/ored:$DEMO_ORE_DIR/build/QuantExt/qle:$DEMO_ORE_DIR/build/QuantLib/ql:$DEMO_BOOST_LIB
 python3 swap.py
 
 # Use the wheel
@@ -87,12 +79,10 @@ git-archive-all oreswig.tgz
 
 # run the wrapper
 cd C:\erik\wheels\zipfiles\oreswig\OREAnalytics-SWIG\Python
-SET BOOST_ROOT=%DEMO_BOOST_ROOT%
-SET BOOST_LIB=%DEMO_BOOST_LIB%
-SET ORE_DIR=%DEMO_ORE_DIR%
-SET PATH=%PATH%;%DEMO_SWIG_DIR%
-SET ORE_STATIC_RUNTIME=1
-python setup.py wrap
+export BOOST_INC=$DEMO_BOOST_INC
+export BOOST_LIB=$DEMO_BOOST_LIB
+export ORE=$DEMO_ORE_DIR
+python3 setup.py wrap
 
 =========
 https://test.pypi.org/
