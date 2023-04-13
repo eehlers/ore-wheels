@@ -6,6 +6,7 @@ SET DEMO_SWIG_DIR=C:\repos\swigwin\swigwin-4.1.1
 SET DEMO_ORE_DIR=C:\repos\oreplus\ore
 SET DEMO_ORE_SWIG_DIR=C:\repos\oreswig.gitlab
 SET DEMO_ZLIB_ROOT=C:\repos\vcpkg\packages\zlib_x64-windows
+SET DEMO_ZLIB_ROOT=C:\repos\zlib\zlib-1.2.13
 
 # gitlab - ore
 SET DEMO_BOOST_ROOT=C:\repos\boost\boost_1_72_0
