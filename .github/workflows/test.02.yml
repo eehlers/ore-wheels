@@ -14,6 +14,16 @@ jobs:
             boost-lib: C:\local\boost\lib32-msvc-14.3
     steps:
     - uses: actions/checkout@v3
+    - name: zlib
+      run: |
+        $Url = "https://www.zlib.net/zlib1213.zip"
+        (New-Object System.Net.WebClient).DownloadFile($Url, "$env:TEMP\zlib.zip")
+        Expand-Archive -Path "$env:TEMP\zlib.zip" -DestinationPath C:\local
+        cd C:\local\zlib-1.2.13
+        mkdir build
+        cd build
+        cmake ..
+        cmake --build . --config Release
     - name: Setup Boost 32 bit
       run: |
         $Url = "https://boostorg.jfrog.io/artifactory/main/release/1.80.0/binaries/boost_1_80_0-msvc-14.3-32.exe"
@@ -32,7 +42,8 @@ jobs:
         cd C:\local\ore
         mkdir build
         cd build
-        cmake -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_BENCHMARK=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF -DCMAKE_BUILD_TYPE=Release -DMSVC_LINK_DYNAMIC_RUNTIME=OFF -G "Visual Studio 17 2022" -A ${{ matrix.platform }} ..
+        SET ZLIB_ROOT=C:\local\zlib-1.2.13
+        cmake -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_BENCHMARK=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF -DCMAKE_BUILD_TYPE=Release -DMSVC_LINK_DYNAMIC_RUNTIME=OFF -DORE_USE_ZLIB=ON -G "Visual Studio 17 2022" -A ${{ matrix.platform }} ..
         cmake --build . --config Release --verbose
     - name: Unpack ORE-SWIG
       run: |
@@ -45,6 +56,7 @@ jobs:
         BOOST_LIB: ${{ matrix.boost-lib }}
         ORE_DIR: C:\local\ore
         ORE_STATIC_RUNTIME: 1
+        ORE_USE_ZLIB: 1
         CIBW_SKIP: cp36-* cp37-*
         CIBW_ARCHS_WINDOWS: ${{ matrix.arch }}
         CIBW_BUILD_VERBOSITY: 2
