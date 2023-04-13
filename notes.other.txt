@@ -287,3 +287,13 @@ OREAnalytics/CMakeLists.txt
 find_package (Boost REQUIRED COMPONENTS unit_test_framework regex date_time thread serialization system filesystem timer OPTIONAL_COMPONENTS chrono)
 cmake --build . -j 4
 
+=====
+LINK : fatal error LNK1158: cannot run 'rc.exe'
+I got this error when trying to run link.exe from the DOS command line.  The fix was either:
+
+1) modify the PATH of the DOS command prompt:
+
+SET PATH=%PATH%;C:\Program Files (x86)\Windows Kits\10\bin\10.0.22000.0\x64
+
+2) or, run the command from the visual studio command prompt.
+

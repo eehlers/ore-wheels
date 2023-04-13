@@ -5,6 +5,7 @@ SET DEMO_BOOST_LIB=C:\repos\boost\boost_1_72_0\lib64-msvc-14.2
 SET DEMO_SWIG_DIR=C:\repos\swigwin\swigwin-4.1.1
 SET DEMO_ORE_DIR=C:\repos\oreplus\ore
 SET DEMO_ORE_SWIG_DIR=C:\repos\oreswig.gitlab
+SET DEMO_ZLIB_ROOT=C:\repos\vcpkg\packages\zlib_x64-windows
 
 # gitlab - ore
 SET DEMO_BOOST_ROOT=C:\repos\boost\boost_1_72_0
@@ -34,11 +35,11 @@ mkdir build
 cd %DEMO_ORE_DIR%\build
 SET BOOST_INCLUDEDIR=%DEMO_BOOST_ROOT%
 SET BOOST_LIBRARYDIR=%DEMO_BOOST_LIB%
-SET ZLIB_ROOT=C:\repos\vcpkg\packages\zlib_x64-windows
+SET ZLIB_ROOT=%DEMO_ZLIB_ROOT%
 cmake -DBoost_NO_WARN_NEW_VERSIONS=1 -Wno-dev -G "Visual Studio 17 2022" -A x64 ..
 cmake -DBoost_NO_WARN_NEW_VERSIONS=1 -Wno-dev -G "Visual Studio 17 2022" -A x64 .. -DMSVC_LINK_DYNAMIC_RUNTIME=OFF 
 cmake -DBoost_NO_WARN_NEW_VERSIONS=1 -Wno-dev -G "Visual Studio 17 2022" -A x64 .. -DMSVC_LINK_DYNAMIC_RUNTIME=OFF -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_BENCHMARK=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF -DCMAKE_BUILD_TYPE=Release
--DORE_USE_ZLIB=ON
+cmake -DBoost_NO_WARN_NEW_VERSIONS=1 -Wno-dev -G "Visual Studio 17 2022" -A x64 .. -DMSVC_LINK_DYNAMIC_RUNTIME=OFF -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_BENCHMARK=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF -DCMAKE_BUILD_TYPE=Release -DORE_USE_ZLIB=ON
 -> %DEMO_ORE_DIR%\build\ORE.sln
 
 # ore - build
@@ -56,8 +57,10 @@ cd %DEMO_ORE_SWIG_DIR%\OREAnalytics-SWIG\Python\build
 SET BOOST_INCLUDEDIR=%DEMO_BOOST_ROOT%
 SET BOOST_LIBRARYDIR=%DEMO_BOOST_LIB%
 SET SWIG_ROOT=%DEMO_SWIG_DIR%
+SET ZLIB_ROOT=%DEMO_ZLIB_ROOT%
 cmake -Wno-dev -G "Visual Studio 17 2022" -A x64 .. -DORE=%DEMO_ORE_DIR%
 cmake -Wno-dev -G "Visual Studio 17 2022" -A x64 .. -DORE=%DEMO_ORE_DIR% -DMSVC_LINK_DYNAMIC_RUNTIME=OFF 
+cmake -Wno-dev -G "Visual Studio 17 2022" -A x64 .. -DORE=%DEMO_ORE_DIR% -DMSVC_LINK_DYNAMIC_RUNTIME=OFF -DORE_USE_ZLIB=ON
 cmake --build . --config Release
 cmake --build . --config Debug
 
@@ -78,10 +81,13 @@ SET BOOST_LIB=%DEMO_BOOST_LIB%
 SET ORE_DIR=%DEMO_ORE_DIR%
 SET PATH=%PATH%;%DEMO_SWIG_DIR%
 SET ORE_STATIC_RUNTIME=1
+SET ORE_USE_ZLIB=1
 python setup.py wrap
 python setup.py build
 python setup.py test
 python -m build --wheel
+
+cl : Command line warning D9025 : overriding '/MD' with '/MT'
 
 # use the wrapper
 
