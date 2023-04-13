@@ -5,9 +5,6 @@ DEMO_BOOST_LIB=/home/erik/repos/boost/install/lib
 DEMO_ORE_DIR=/home/erik/repos/oreplus/ore
 DEMO_ORE_SWIG_DIR=/home/erik/repos/oreswig
 
-DEMO_BOOST_INC=/usr/include
-DEMO_BOOST_LIB=/usr/lib/x86_64-linux-gnu
-
 # ore - configure
 
 cd $DEMO_ORE_DIR
