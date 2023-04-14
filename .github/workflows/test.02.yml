@@ -6,12 +6,12 @@ jobs:
     strategy:
       matrix:
         include:
+          - arch: x86
+            platform: Win32
+            boost-lib: 32
           - arch: AMD64
             platform: x64
-            boost-lib: C:\local\boost\lib64-msvc-14.3
-#          - arch: x86
-#            platform: Win32
-#            boost-lib: C:\local\boost\lib32-msvc-14.3
+            boost-lib: 64
     steps:
     - uses: actions/checkout@v3
     - name: zlib
@@ -24,14 +24,9 @@ jobs:
         cd build
         cmake ..
         cmake --build . --config Release
-#    - name: Setup Boost 32 bit
-#      run: |
-#        $Url = "https://boostorg.jfrog.io/artifactory/main/release/1.80.0/binaries/boost_1_80_0-msvc-14.3-32.exe"
-#        (New-Object System.Net.WebClient).DownloadFile($Url, "$env:TEMP\boost.exe")
-#        Start-Process -Wait -FilePath "$env:TEMP\boost.exe" "/SILENT","/SP-","/SUPPRESSMSGBOXES","/DIR=C:\local\boost"
-    - name: Setup Boost 64 bit
+    - name: Build Boost
       run: |
-        $Url = "https://boostorg.jfrog.io/artifactory/main/release/1.80.0/binaries/boost_1_80_0-msvc-14.3-64.exe"
+        $Url = "https://boostorg.jfrog.io/artifactory/main/release/1.80.0/binaries/boost_1_80_0-msvc-14.3-${{ matrix.boost-lib }}.exe"
         (New-Object System.Net.WebClient).DownloadFile($Url, "$env:TEMP\boost.exe")
         Start-Process -Wait -FilePath "$env:TEMP\boost.exe" "/SILENT","/SP-","/SUPPRESSMSGBOXES","/DIR=C:\local\boost"
     - name: Build ORE
@@ -54,7 +49,7 @@ jobs:
       uses: pypa/cibuildwheel@v2.11.1
       env:
         BOOST_ROOT: C:\local\boost
-        BOOST_LIB: ${{ matrix.boost-lib }}
+        BOOST_LIB: C:\local\boost\lib${{ matrix.boost-lib }}-msvc-14.3
         ORE_DIR: C:\local\ore
         ORE_STATIC_RUNTIME: 1
         ORE_USE_ZLIB: 1
