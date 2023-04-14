@@ -9,9 +9,9 @@ jobs:
           - arch: AMD64
             platform: x64
             boost-lib: C:\local\boost\lib64-msvc-14.3
-          - arch: x86
-            platform: Win32
-            boost-lib: C:\local\boost\lib32-msvc-14.3
+#          - arch: x86
+#            platform: Win32
+#            boost-lib: C:\local\boost\lib32-msvc-14.3
     steps:
     - uses: actions/checkout@v3
     - name: zlib
@@ -44,7 +44,7 @@ jobs:
         cd build
         SET ZLIB_ROOT=C:\local\zlib-1.2.13
         dir C:\local\zlib-1.2.13\build\Release
-        cmake -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_BENCHMARK=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF -DCMAKE_BUILD_TYPE=Release -DMSVC_LINK_DYNAMIC_RUNTIME=OFF -DORE_USE_ZLIB=ON -G "Visual Studio 17 2022" -A ${{ matrix.platform }} ..
+        cmake -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_BENCHMARK=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF -DCMAKE_BUILD_TYPE=Release -DMSVC_LINK_DYNAMIC_RUNTIME=OFF -DORE_USE_ZLIB=ON -DZLIB_LIBRARY=C:\local\zlib-1.2.13\build\Release\zlib.lib -G "Visual Studio 17 2022" -A ${{ matrix.platform }} ..
         cmake --build . --config Release --verbose
     - name: Unpack ORE-SWIG
       run: |
