@@ -148,7 +148,7 @@ class my_build_ext(build_ext):
             self.library_dirs.append(self.validate_path(os.path.join(ORE_DIR, 'build', 'QuantExt', 'qle', 'Release')))
             self.library_dirs.append(self.validate_path(os.path.join(ORE_DIR, 'build', 'OREData', 'ored', 'Release')))
             self.library_dirs.append(self.validate_path(os.path.join(ORE_DIR, 'build', 'OREAnalytics', 'orea', 'Release')))
-            self.library_dirs.append("C:\\local\\zlib-1.2.13\\build\\Release")
+            #self.library_dirs.append("C:\\local\\zlib-1.2.13\\build\\Release")
 
             #if 'INCLUDE' in os.environ:
             #    dirs = [dir for dir in os.environ['INCLUDE'].split(';')]
@@ -164,17 +164,8 @@ class my_build_ext(build_ext):
             self.define += [('__WIN32__', None), ('WIN32', None),
                             ('NDEBUG', None), ('_WINDOWS', None),
                             ('NOMINMAX', None)]
-            print("XXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-            print("XXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-            print("XXXXXXXXXXXXXXXXXXXXXXXXXXXX")
             if 'ORE_USE_ZLIB' in os.environ:
                 self.define += [('ORE_USE_ZLIB', None)]
-                print("ORE_USE_ZLIB ON")
-            else:
-                print("ORE_USE_ZLIB OFF")
-            print("XXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-            print("XXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-            print("XXXXXXXXXXXXXXXXXXXXXXXXXXXX")
             extra_compile_args = ['/GR', '/FD', '/Zm250', '/EHsc', '/bigobj', '/std:c++17', '/wd4996' ]
             extra_link_args = ['/subsystem:windows', machinetype]
             self.libraries = [ 'advapi32' ]
