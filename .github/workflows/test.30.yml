@@ -11,6 +11,9 @@ jobs:
         cd /usr/local/lib
         ln -s libboost_thread-mt.dylib libboost_thread.dylib
         ln -s libboost_thread-mt.a libboost_thread.a
+    - name: Setup
+      run: |
+        brew install zlib
     - name: Build ORE
       run: |
         pwd
@@ -22,7 +25,7 @@ jobs:
         cd ore
         mkdir build
         cd build
-        cmake -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_BENCHMARK=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF -DCMAKE_BUILD_TYPE=Release ..
+        cmake -DORE_USE_ZLIB=ON -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_BENCHMARK=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF -DCMAKE_BUILD_TYPE=Release ..
         cmake --build . -j4
         cmake --install .
     - name: Build ORE wheels
