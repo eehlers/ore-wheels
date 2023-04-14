@@ -1,10 +1,14 @@
-name: Build 22 - Linux - cmake x86_64 manylinux
+name: Build 200 - Linux - cmake x86_64 manylinux
 on: workflow_dispatch
 jobs:
   wheels-linux:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - name: Set Swap Space
+      uses: pierotofy/set-swap-space@master
+      with:
+        swap-size-gb: 10
     - name: Build ORE
       run: |
         ./build_ore.22.sh

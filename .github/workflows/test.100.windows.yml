@@ -1,4 +1,4 @@
-name: Build 02 - Windows - cmake Win32 & x64
+name: Build 100 - Windows - cmake Win32 & x64
 on: workflow_dispatch
 jobs:
   wheels-windows:
@@ -6,22 +6,27 @@ jobs:
     strategy:
       matrix:
         include:
-          - arch: AMD64
-            platform: x64
-            boost-lib: C:\local\boost\lib64-msvc-14.3
           - arch: x86
             platform: Win32
-            boost-lib: C:\local\boost\lib32-msvc-14.3
+            boost-lib: 32
+          - arch: AMD64
+            platform: x64
+            boost-lib: 64
     steps:
     - uses: actions/checkout@v3
-    - name: Setup Boost 32 bit
+    - name: zlib
       run: |
-        $Url = "https://boostorg.jfrog.io/artifactory/main/release/1.80.0/binaries/boost_1_80_0-msvc-14.3-32.exe"
-        (New-Object System.Net.WebClient).DownloadFile($Url, "$env:TEMP\boost.exe")
-        Start-Process -Wait -FilePath "$env:TEMP\boost.exe" "/SILENT","/SP-","/SUPPRESSMSGBOXES","/DIR=C:\local\boost"
-    - name: Setup Boost 64 bit
+        $Url = "https://www.zlib.net/zlib1213.zip"
+        (New-Object System.Net.WebClient).DownloadFile($Url, "$env:TEMP\zlib.zip")
+        Expand-Archive -Path "$env:TEMP\zlib.zip" -DestinationPath C:\local
+        cd C:\local\zlib-1.2.13
+        mkdir build
+        cd build
+        cmake ..
+        cmake --build . --config Release
+    - name: Build Boost
       run: |
-        $Url = "https://boostorg.jfrog.io/artifactory/main/release/1.80.0/binaries/boost_1_80_0-msvc-14.3-64.exe"
+        $Url = "https://boostorg.jfrog.io/artifactory/main/release/1.80.0/binaries/boost_1_80_0-msvc-14.3-${{ matrix.boost-lib }}.exe"
         (New-Object System.Net.WebClient).DownloadFile($Url, "$env:TEMP\boost.exe")
         Start-Process -Wait -FilePath "$env:TEMP\boost.exe" "/SILENT","/SP-","/SUPPRESSMSGBOXES","/DIR=C:\local\boost"
     - name: Build ORE
@@ -32,7 +37,9 @@ jobs:
         cd C:\local\ore
         mkdir build
         cd build
-        cmake -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_BENCHMARK=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF -DCMAKE_BUILD_TYPE=Release -DMSVC_LINK_DYNAMIC_RUNTIME=OFF -G "Visual Studio 17 2022" -A ${{ matrix.platform }} ..
+        SET ZLIB_ROOT=C:\local\zlib-1.2.13
+        dir C:\local\zlib-1.2.13\build\Release
+        cmake -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_BENCHMARK=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF -DCMAKE_BUILD_TYPE=Release -DMSVC_LINK_DYNAMIC_RUNTIME=OFF -DORE_USE_ZLIB=ON -DZLIB_LIBRARY=C:\local\zlib-1.2.13\build\Release\zlib.lib -G "Visual Studio 17 2022" -A ${{ matrix.platform }} ..
         cmake --build . --config Release --verbose
     - name: Unpack ORE-SWIG
       run: |
@@ -42,9 +49,10 @@ jobs:
       uses: pypa/cibuildwheel@v2.11.1
       env:
         BOOST_ROOT: C:\local\boost
-        BOOST_LIB: ${{ matrix.boost-lib }}
+        BOOST_LIB: C:\local\boost\lib${{ matrix.boost-lib }}-msvc-14.3
         ORE_DIR: C:\local\ore
         ORE_STATIC_RUNTIME: 1
+        ORE_USE_ZLIB: 1
         CIBW_SKIP: cp36-* cp37-*
         CIBW_ARCHS_WINDOWS: ${{ matrix.arch }}
         CIBW_BUILD_VERBOSITY: 2
