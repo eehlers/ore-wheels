@@ -1,4 +1,4 @@
-name: Build 20 - Linux - cmake x86_64 manylinux
+name: Build 200 - Linux - cmake x86_64 manylinux
 on: workflow_dispatch
 jobs:
   wheels-linux:

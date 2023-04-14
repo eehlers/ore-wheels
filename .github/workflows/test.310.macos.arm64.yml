@@ -1,4 +1,4 @@
-name: Build 31 - MacOS arm64
+name: Build 310 - MacOS arm64
 on: workflow_dispatch
 jobs:
   wheels-macos:

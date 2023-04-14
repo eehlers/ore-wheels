@@ -1,4 +1,4 @@
-name: Build 10 - Windows - cmake Win32 & x64
+name: Build 100 - Windows - cmake Win32 & x64
 on: workflow_dispatch
 jobs:
   wheels-windows:
