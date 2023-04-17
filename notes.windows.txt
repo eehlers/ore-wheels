@@ -134,9 +134,14 @@ C:\Users\eric.ehlers\.pypirc
 #python -m pip install --upgrade twine
 cd C:\erik\projects\wheel\wheels\ore
 python -m twine upload --repository testpypi *.whl
+twine upload -r test *.whl
+
+got this error:
+KeyError: 'repository'
+needed to add "repository" line to .pypirc file
 
 # INSTALL
-pip install -i https://test.pypi.org/simple/ OREAnalytics-Python==1.8.3.2
+pip install -i https://test.pypi.org/simple/ open-source-risk-engine
 
 =========
 https://pypi.org/
