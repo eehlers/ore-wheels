@@ -69,7 +69,7 @@ python3 swap.py
 cd $DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python/Examples
 python3 -m venv env1
 . ./env1/bin/activate
-pip install $DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python/dist/osre-1.8.9.1-cp310-cp310-linux_x86_64.whl
+pip install $DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python/dist/open_source_risk_engine-1.8.9.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
 python3 swap.py
 deactivate
 rm -rf env1
@@ -102,12 +102,12 @@ cd /home/erik/quaternion/wheels
 python3 -m twine upload --repository testpypi *.whl
 
 # INSTALL - LINUX
-cd /home/erik/quaternion/oreswig.eehlers/OREAnalytics-SWIG/Python/Examples
+cd $DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python/Examples
 python3 -m venv env1
 . ./env1/bin/activate
 pip install /home/erik/quaternion/wheels/OREAnalytics_Python-1.8.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-pip install -i https://test.pypi.org/simple/ OREAnalytics-Python==1.8.3.2
-python3 commodityforward.py
+pip install -i https://test.pypi.org/simple/ open_source_risk_engine
+python3 swap.py
 deactivate
 rm -rf env1
 
