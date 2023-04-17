@@ -1,4 +1,4 @@
-name: Build 300 - MacOS x86_64
+name: Build 30 - MacOS x86_64
 on: workflow_dispatch
 jobs:
   wheels-macos:
