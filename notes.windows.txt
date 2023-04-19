@@ -6,7 +6,6 @@ SET DEMO_SWIG_DIR=C:\repos\swigwin\swigwin-4.1.1
 SET DEMO_ORE_DIR=C:\repos\oreplus\ore
 SET DEMO_ORE_SWIG_DIR=C:\repos\oreswig.gitlab
 SET DEMO_ZLIB_ROOT=C:\repos\vcpkg\packages\zlib_x64-windows
-SET DEMO_ZLIB_ROOT=C:\repos\zlib\zlib-1.2.13
 
 # gitlab - ore
 SET DEMO_BOOST_ROOT=C:\repos\boost\boost_1_72_0
@@ -14,6 +13,7 @@ SET DEMO_BOOST_LIB=C:\repos\boost\boost_1_72_0\lib64-msvc-14.2
 SET DEMO_SWIG_DIR=C:\repos\swigwin\swigwin-4.1.1
 SET DEMO_ORE_DIR=C:\repos\ore.gitlab
 SET DEMO_ORE_SWIG_DIR=C:\repos\oreswig.gitlab
+SET DEMO_ZLIB_ROOT=C:\repos\vcpkg\packages\zlib_x64-windows
 
 # github
 SET DEMO_BOOST_ROOT=C:\repos\boost\boost_1_72_0
@@ -21,6 +21,7 @@ SET DEMO_BOOST_LIB=C:\repos\boost\boost_1_72_0\lib64-msvc-14.2
 SET DEMO_SWIG_DIR=C:\repos\swigwin\swigwin-4.1.1
 SET DEMO_ORE_DIR=C:\repos\ore.github
 SET DEMO_ORE_SWIG_DIR=C:\repos\oreswig.github
+SET DEMO_ZLIB_ROOT=C:\repos\vcpkg\packages\zlib_x64-windows
 
 # generate wrapper for oreswig zip file
 SET DEMO_BOOST_ROOT=C:\repos\boost\boost_1_72_0
@@ -28,6 +29,8 @@ SET DEMO_BOOST_LIB=C:\repos\boost\boost_1_72_0\lib64-msvc-14.2
 SET DEMO_SWIG_DIR=C:\repos\swigwin\swigwin-4.1.1
 SET DEMO_ORE_DIR=C:\repos\ore.github
 SET DEMO_ORE_SWIG_DIR=C:\erik\wheels\zipfiles\oreswig
+
+SET DEMO_ZLIB_ROOT=C:\repos\zlib\zlib-1.2.13
 
 # ore - configure
 
@@ -121,7 +124,7 @@ SET BOOST_ROOT=%DEMO_BOOST_ROOT%
 SET BOOST_LIB=%DEMO_BOOST_LIB%
 SET ORE_DIR=%DEMO_ORE_DIR%
 SET PATH=%PATH%;%DEMO_SWIG_DIR%
-SET ORE_STATIC_RUNTIME=1
+::SET ORE_STATIC_RUNTIME=1
 python setup.py wrap
 
 =========
