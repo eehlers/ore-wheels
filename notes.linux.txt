@@ -6,6 +6,16 @@ DEMO_ORE_DIR=/home/erik/repos/oreplus/ore
 DEMO_ORE_SWIG_DIR=/home/erik/repos/oreswig
 DEMO_ZLIB_ROOT=/home/erik/repos/zlib/zlib-1.2.13
 
+# github
+DEMO_BOOST_INC=/home/erik/repos/boost/install2/include
+DEMO_BOOST_LIB=/home/erik/repos/boost/install2/lib
+DEMO_ORE_DIR=/home/erik/repos/ore.github
+DEMO_ORE_SWIG_DIR=/home/erik/repos/oreswig.github
+DEMO_ZLIB_ROOT=/home/erik/repos/zlib/zlib-1.2.13
+
+DEMO_BOOST_INC=/usr/include
+DEMO_BOOST_LIB=/usr/lib/x86_64-linux-gnu
+
 # ore - configure
 
 cd $DEMO_ORE_DIR
@@ -77,11 +87,13 @@ rm -rf env1
 #pip install git-archive-all
 cd $DEMO_ORE_DIR
 git-archive-all ore.tgz
+mv ore.tgz /home/erik/projects/wheels/tarballs
 cd $DEMO_ORE_SWIG_DIR
 git-archive-all oreswig.tgz
+mv oreswig.tgz /home/erik/projects/wheels/tarballs
 
 # run the wrapper
-cd C:\erik\wheels\zipfiles\oreswig\OREAnalytics-SWIG\Python
+cd /home/erik/projects/wheels/tarballs/oreswig/OREAnalytics-SWIG/Python
 export BOOST_INC=$DEMO_BOOST_INC
 export BOOST_LIB=$DEMO_BOOST_LIB
 export ORE=$DEMO_ORE_DIR
