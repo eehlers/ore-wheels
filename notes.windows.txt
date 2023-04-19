@@ -151,9 +151,9 @@ https://pypi.org/
 =========
 
 # UPLOAD
-cd C:\erik\projects\wheel\wheels2
+cd C:\erik\wheels\wheels\1.8.9.2
 #twine upload -r pypi --sign xxx
-twine upload -r pypi xxx
+twine upload -r pypi *.whl
 
 # INSTALL
 cd %DEMO_ORE_SWIG_DIR%\OREAnalytics-SWIG\Python\Examples
