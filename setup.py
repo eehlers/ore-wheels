@@ -148,7 +148,6 @@ class my_build_ext(build_ext):
             self.library_dirs.append(self.validate_path(os.path.join(ORE_DIR, 'build', 'QuantExt', 'qle', 'Release')))
             self.library_dirs.append(self.validate_path(os.path.join(ORE_DIR, 'build', 'OREData', 'ored', 'Release')))
             self.library_dirs.append(self.validate_path(os.path.join(ORE_DIR, 'build', 'OREAnalytics', 'orea', 'Release')))
-            #self.library_dirs.append("C:\\local\\zlib-1.2.13\\build\\Release")
 
             #if 'INCLUDE' in os.environ:
             #    dirs = [dir for dir in os.environ['INCLUDE'].split(';')]
@@ -262,7 +261,7 @@ classifiers = [
 ]
 
 setup(name             = "open-source-risk-engine",
-      version          = "1.8.9.1",
+      version          = "1.8.9.2",
       description      = "Python bindings for the OREAnalytics library",
       long_description = """
 OREAnalytics (http://opensourcerisk.org/) is a C++ library for financial quantitative
