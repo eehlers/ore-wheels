@@ -114,9 +114,9 @@ python3 -m twine upload --repository testpypi *.whl
 cd /home/erik/quaternion/oreswig.eehlers/OREAnalytics-SWIG/Python/Examples
 python3 -m venv env1
 . ./env1/bin/activate
-pip install /home/erik/quaternion/wheels/OREAnalytics_Python-1.8.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-pip install -i https://test.pypi.org/simple/ OREAnalytics-Python==1.8.3.2
-python3 commodityforward.py
+#pip install /home/erik/quaternion/wheels/OREAnalytics_Python-1.8.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+pip install -i https://test.pypi.org/simple/ open-source-risk-engine
+python3 swap.py
 deactivate
 rm -rf env1
 
