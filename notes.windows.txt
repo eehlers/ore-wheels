@@ -1,4 +1,12 @@
 
+# github
+SET DEMO_BOOST_ROOT=C:\repos\boost\boost_1_72_0
+SET DEMO_BOOST_LIB=C:\repos\boost\boost_1_72_0\lib64-msvc-14.2
+SET DEMO_SWIG_DIR=C:\repos\swigwin\swigwin-4.1.1
+SET DEMO_ORE_DIR=C:\repos\ore.github
+SET DEMO_ORE_SWIG_DIR=C:\repos\oreswig.github
+SET DEMO_ZLIB_ROOT=C:\repos\vcpkg\packages\zlib_x64-windows
+
 # gitlab - oreplus
 SET DEMO_BOOST_ROOT=C:\repos\boost\boost_1_72_0
 SET DEMO_BOOST_LIB=C:\repos\boost\boost_1_72_0\lib64-msvc-14.2
@@ -13,14 +21,6 @@ SET DEMO_BOOST_LIB=C:\repos\boost\boost_1_72_0\lib64-msvc-14.2
 SET DEMO_SWIG_DIR=C:\repos\swigwin\swigwin-4.1.1
 SET DEMO_ORE_DIR=C:\repos\ore.gitlab
 SET DEMO_ORE_SWIG_DIR=C:\repos\oreswig.gitlab
-SET DEMO_ZLIB_ROOT=C:\repos\vcpkg\packages\zlib_x64-windows
-
-# github
-SET DEMO_BOOST_ROOT=C:\repos\boost\boost_1_72_0
-SET DEMO_BOOST_LIB=C:\repos\boost\boost_1_72_0\lib64-msvc-14.2
-SET DEMO_SWIG_DIR=C:\repos\swigwin\swigwin-4.1.1
-SET DEMO_ORE_DIR=C:\repos\ore.github
-SET DEMO_ORE_SWIG_DIR=C:\repos\oreswig.github
 SET DEMO_ZLIB_ROOT=C:\repos\vcpkg\packages\zlib_x64-windows
 
 # generate wrapper for oreswig zip file
@@ -42,9 +42,9 @@ SET BOOST_LIBRARYDIR=%DEMO_BOOST_LIB%
 SET ZLIB_ROOT=%DEMO_ZLIB_ROOT%
 cmake -DBoost_NO_WARN_NEW_VERSIONS=1 -Wno-dev -G "Visual Studio 17 2022" -A x64 ..
 cmake -DBoost_NO_WARN_NEW_VERSIONS=1 -Wno-dev -G "Visual Studio 17 2022" -A x64 .. -DMSVC_LINK_DYNAMIC_RUNTIME=OFF 
-cmake -DBoost_NO_WARN_NEW_VERSIONS=1 -Wno-dev -G "Visual Studio 17 2022" -A x64 .. -DMSVC_LINK_DYNAMIC_RUNTIME=OFF -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_BENCHMARK=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF -DCMAKE_BUILD_TYPE=Release
-cmake -DBoost_NO_WARN_NEW_VERSIONS=1 -Wno-dev -G "Visual Studio 17 2022" -A x64 .. -DMSVC_LINK_DYNAMIC_RUNTIME=OFF -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_BENCHMARK=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF -DORE_USE_ZLIB=ON -DCMAKE_BUILD_TYPE=Release
-cmake -DBoost_NO_WARN_NEW_VERSIONS=1 -Wno-dev -G "Visual Studio 17 2022" -A x64 .. -DMSVC_LINK_DYNAMIC_RUNTIME=OFF -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_BENCHMARK=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF -DORE_USE_ZLIB=ON -DQL_ENABLE_SESSIONS=ON -DCMAKE_BUILD_TYPE=Release
+cmake -DBoost_NO_WARN_NEW_VERSIONS=1 -Wno-dev -G "Visual Studio 17 2022" -A x64 .. -DMSVC_LINK_DYNAMIC_RUNTIME=OFF -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_BENCHMARK=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF
+cmake -DBoost_NO_WARN_NEW_VERSIONS=1 -Wno-dev -G "Visual Studio 17 2022" -A x64 .. -DMSVC_LINK_DYNAMIC_RUNTIME=OFF -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_BENCHMARK=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF -DORE_USE_ZLIB=ON
+cmake -DBoost_NO_WARN_NEW_VERSIONS=1 -Wno-dev -G "Visual Studio 17 2022" -A x64 .. -DMSVC_LINK_DYNAMIC_RUNTIME=OFF -DORE_BUILD_DOC=OFF -DORE_BUILD_EXAMPLES=OFF -DORE_BUILD_TESTS=OFF -DORE_BUILD_APP=OFF -DQL_BUILD_BENCHMARK=OFF -DQL_BUILD_EXAMPLES=OFF -DQL_BUILD_TEST_SUITE=OFF -DORE_USE_ZLIB=ON -DQL_ENABLE_SESSIONS=ON
 -> %DEMO_ORE_DIR%\build\ORE.sln
 
 # ore - build
@@ -57,8 +57,8 @@ cmake --build . --config Debug
 # oreswig - cmake
 
 cd %DEMO_ORE_SWIG_DIR%\OREAnalytics-SWIG\Python
-mkdir build
-cd %DEMO_ORE_SWIG_DIR%\OREAnalytics-SWIG\Python\build
+mkdir build2
+cd %DEMO_ORE_SWIG_DIR%\OREAnalytics-SWIG\Python\build2
 SET BOOST_INCLUDEDIR=%DEMO_BOOST_ROOT%
 SET BOOST_LIBRARYDIR=%DEMO_BOOST_LIB%
 SET SWIG_ROOT=%DEMO_SWIG_DIR%
@@ -73,8 +73,8 @@ cmake --build . --config Debug
 
 cd %DEMO_ORE_SWIG_DIR%\OREAnalytics-SWIG\Python\Examples
 
-SET PYTHONPATH=%DEMO_ORE_SWIG_DIR%\OREAnalytics-SWIG\Python\build;%DEMO_ORE_SWIG_DIR%\OREAnalytics-SWIG\Python\build\Release
-SET PYTHONPATH=%DEMO_ORE_SWIG_DIR%\OREAnalytics-SWIG\Python\build;%DEMO_ORE_SWIG_DIR%\OREAnalytics-SWIG\Python\build\Debug
+SET PYTHONPATH=%DEMO_ORE_SWIG_DIR%\OREAnalytics-SWIG\Python\build2;%DEMO_ORE_SWIG_DIR%\OREAnalytics-SWIG\Python\build2\Release
+SET PYTHONPATH=%DEMO_ORE_SWIG_DIR%\OREAnalytics-SWIG\Python\build2;%DEMO_ORE_SWIG_DIR%\OREAnalytics-SWIG\Python\build2\Debug
 
 python swap.py
 
@@ -105,7 +105,7 @@ python swap.py
 cd %DEMO_ORE_SWIG_DIR%\OREAnalytics-SWIG\Python\Examples
 python -m venv env1
 .\env1\Scripts\activate.bat
-pip install %DEMO_ORE_SWIG_DIR%\OREAnalytics-SWIG\Python\dist\osre-1.8.9.1-cp310-cp310-win_amd64.whl
+pip install %DEMO_ORE_SWIG_DIR%\OREAnalytics-SWIG\Python\dist\open_source_risk_engine-1.8.10-cp310-cp310-win_amd64.whl
 python swap.py
 deactivate
 rmdir /s /q env1
