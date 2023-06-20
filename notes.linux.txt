@@ -1,16 +1,16 @@
 
-# oreplus
-DEMO_BOOST_INC=/home/erik/repos/boost/install2/include
-DEMO_BOOST_LIB=/home/erik/repos/boost/install2/lib
-DEMO_ORE_DIR=/home/erik/repos/oreplus/ore
-DEMO_ORE_SWIG_DIR=/home/erik/repos/oreswig
-DEMO_ZLIB_ROOT=/home/erik/repos/zlib/zlib-1.2.13
-
 # github
 DEMO_BOOST_INC=/home/erik/repos/boost/install2/include
 DEMO_BOOST_LIB=/home/erik/repos/boost/install2/lib
 DEMO_ORE_DIR=/home/erik/repos/ore.github
 DEMO_ORE_SWIG_DIR=/home/erik/repos/oreswig.github
+DEMO_ZLIB_ROOT=/home/erik/repos/zlib/zlib-1.2.13
+
+# oreplus
+DEMO_BOOST_INC=/home/erik/repos/boost/install2/include
+DEMO_BOOST_LIB=/home/erik/repos/boost/install2/lib
+DEMO_ORE_DIR=/home/erik/repos/oreplus/ore
+DEMO_ORE_SWIG_DIR=/home/erik/repos/oreswig
 DEMO_ZLIB_ROOT=/home/erik/repos/zlib/zlib-1.2.13
 
 DEMO_BOOST_INC=/usr/include
@@ -111,7 +111,7 @@ cd /home/erik/quaternion/wheels
 python3 -m twine upload --repository testpypi *.whl
 
 # INSTALL - LINUX
-cd /home/erik/quaternion/oreswig.eehlers/OREAnalytics-SWIG/Python/Examples
+cd /home/erik/repos/oreswig.github/OREAnalytics-SWIG/Python/Examples
 python3 -m venv env1
 . ./env1/bin/activate
 #pip install /home/erik/quaternion/wheels/OREAnalytics_Python-1.8.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
