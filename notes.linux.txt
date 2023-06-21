@@ -36,8 +36,8 @@ cmake --build .
 # oreswig - cmake
 
 cd $DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python
-mkdir build
-cd $DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python/build
+mkdir build2
+cd $DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python/build2
 export BOOST_INCLUDEDIR=$DEMO_BOOST_INC
 export BOOST_LIBRARYDIR=$DEMO_BOOST_LIB
 export ZLIB_ROOT=$DEMO_ZLIB_ROOT
@@ -48,7 +48,7 @@ cmake --build .
 # Use the wrapper
 
 cd $DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python/Examples
-export PYTHONPATH=$DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python/build
+export PYTHONPATH=$DEMO_ORE_SWIG_DIR/OREAnalytics-SWIG/Python/build2
 export LD_LIBRARY_PATH=$DEMO_ORE_DIR/build/OREAnalytics/orea:$DEMO_ORE_DIR/build/OREData/ored:$DEMO_ORE_DIR/build/QuantExt/qle:$DEMO_ORE_DIR/build/QuantLib/ql:$DEMO_BOOST_LIB
 python3 swap.py
 
