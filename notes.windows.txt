@@ -123,11 +123,7 @@ move oreswig.zip C:\erik\wheels\zipfiles
 
 # run the wrapper
 cd C:\erik\wheels\zipfiles\oreswig\OREAnalytics-SWIG\Python
-SET BOOST_ROOT=%DEMO_BOOST_ROOT%
-SET BOOST_LIB=%DEMO_BOOST_LIB%
-SET ORE_DIR=%DEMO_ORE_DIR%
 SET PATH=%PATH%;%DEMO_SWIG_DIR%
-::SET ORE_STATIC_RUNTIME=1
 python setup.py wrap
 
 =========
