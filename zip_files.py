@@ -4,8 +4,9 @@
 #   -s, --oreswig  compress oreswig (after running the swig wrapper)
 # Run this script under windows to generate .zip files and under posix to generate .tgz files.
 # Be sure that the given repos and their submodules are up to date.
-# Before running this script, you need to set some environment variables,
-# and to ensure that swig is in your path, e.g:
+# Before running this script, you need to ensure that swig is in your path.
+# This is usually already the case on posix but not on windows.
+# You also need to set some environment variables, e.g:
 '''
 windows:
 
@@ -16,8 +17,8 @@ SET PATH=%PATH%;%SWIG_DIR%
 
 posix:
 
-SET ORE_DIR=/home/erik/repos/ore.github
-SET ORESWIG_DIR=/home/erik/repos/oreswig.github
+export ORE_DIR=/home/erik/repos/ore.github
+export ORESWIG_DIR=/home/erik/repos/oreswig.github
 '''
 
 from git_archive_all import GitArchiver as ga
@@ -52,19 +53,36 @@ def git_archive(name, suffix, var):
     archiver.create(zip_file)
 
 def run_wrapper():
-    shutil.unpack_archive("oreswig.zip")
+
+    if os.name == "nt":
+        shutil.unpack_archive("oreswig.zip")
+    elif os.name == "posix":
+        shutil.unpack_archive("oreswig.tgz")
+    else:
+        raise Exception("unrecognized os.name: {}".format(os.name))
+
     cwd = os.getcwd()
     wrapper_dir = os.path.abspath("oreswig/OREAnalytics-SWIG/Python")
     os.chdir(wrapper_dir)
-    subprocess.call(["python", "setup.py", "wrap"])
+    subprocess.call([PYTHON, "setup.py", "wrap"])
     os.chdir(cwd)
-    shutil.make_archive("oreswig", "zip", base_dir="oreswig")
+
+    if os.name == "nt":
+        shutil.make_archive("oreswig", "zip", base_dir="oreswig")
+    elif os.name == "posix":
+        shutil.make_archive("oreswig", "gztar", base_dir="oreswig")
+        os.rename("oreswig.tar.gz", "oreswig.tgz")
+    else:
+        raise Exception("unrecognized os.name: {}".format(os.name))
+
     shutil.rmtree("oreswig")
 
 if os.name == "nt":
     suffix = "zip"
+    PYTHON = "python"
 elif os.name == "posix":
     suffix = "tgz"
+    PYTHON = "python3"
 else:
     raise Exception("unrecognized os.name: {}".format(os.name))
 

@@ -95,9 +95,6 @@ mv oreswig.tgz /home/erik/projects/wheels/tarballs
 
 # run the wrapper
 cd /home/erik/projects/wheels/tarballs/oreswig/OREAnalytics-SWIG/Python
-#export BOOST_INC=$DEMO_BOOST_INC
-#export BOOST_LIB=$DEMO_BOOST_LIB
-#export ORE=$DEMO_ORE_DIR
 python3 setup.py wrap
 
 =========
