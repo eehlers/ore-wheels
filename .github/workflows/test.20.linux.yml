@@ -5,10 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Install eigen
-      run: |
-        sudo apt-get update
-        sudo apt-get install -f -y libeigen3-dev
+#    - name: Install eigen
+#      run: |
+#        sudo apt-get update
+#        sudo apt-get install -f -y libeigen3-dev
     - name: Build ORE
       run: |
         ./build_ore.22.sh
