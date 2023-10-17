@@ -9,6 +9,9 @@ echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 
 CURRENT_DIR=$(pwd)
 
+sudo apt update
+sudo apt install -f -y libeigen3-dev
+
 curl -O -L https://www.zlib.net/zlib-1.3.tar.gz
 tar xzvf zlib-1.3.tar.gz
 cd zlib-1.3
