@@ -15,13 +15,13 @@ jobs:
     - name: Build ORE wheels
       uses: pypa/cibuildwheel@v2.11.1
       env:
-        #CIBW_BUILD: "*-musllinux*"
-        #CIBW_SKIP: cp36-*
+        CIBW_BUILD: "*-musllinux*"
+        CIBW_SKIP: cp36-*
         #CIBW_BUILD: cp37-musllinux_x86_64
         #CIBW_BUILD: cp38-musllinux_x86_64
         #CIBW_BUILD: cp39-musllinux_x86_64
         #CIBW_BUILD: cp310-musllinux_x86_64
-        CIBW_BUILD: cp311-musllinux_x86_64
+        #CIBW_BUILD: cp311-musllinux_x86_64
         CIBW_ARCHS_LINUX: x86_64
         CIBW_BUILD_VERBOSITY: 2
         CIBW_BEFORE_ALL_LINUX: ./before_all_linux.22.sh

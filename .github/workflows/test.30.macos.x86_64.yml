@@ -31,9 +31,9 @@ jobs:
     - name: Build ORE wheels
       uses: pypa/cibuildwheel@v2.11.1
       env:
-        #CIBW_SKIP: cp36-*
+        CIBW_SKIP: cp36-*
         #CIBW_BUILD: cp310-macosx_x86_64
-        CIBW_BUILD: cp311-macosx_x86_64
+        #CIBW_BUILD: cp311-macosx_x86_64
         CIBW_ARCHS_MACOS: x86_64
         CXXFLAGS: -std=c++14 -g0 -O3
         CIBW_BUILD_VERBOSITY: 2
