@@ -17,15 +17,15 @@ jobs:
       env:
         #CIBW_BUILD: "*-musllinux*"
         #CIBW_SKIP: cp36-*
-        #CIBW_BUILD: cp37-manylinux_x86_64
-        #CIBW_BUILD: cp38-manylinux_x86_64
-        #CIBW_BUILD: cp39-manylinux_x86_64
-        #CIBW_BUILD: cp310-manylinux_x86_64
+        #CIBW_BUILD: cp37-musllinux_x86_64
+        #CIBW_BUILD: cp38-musllinux_x86_64
+        #CIBW_BUILD: cp39-musllinux_x86_64
+        #CIBW_BUILD: cp310-musllinux_x86_64
         CIBW_BUILD: cp311-musllinux_x86_64
         CIBW_ARCHS_LINUX: x86_64
         CIBW_BUILD_VERBOSITY: 2
         CIBW_BEFORE_ALL_LINUX: ./before_all_linux.22.sh
-        CIBW_ENVIRONMENT_LINUX: CXXFLAGS="-std=c++17 -O2 -g0"
+        CIBW_ENVIRONMENT_LINUX: CXXFLAGS="-O2 -g0"
         CIBW_ENVIRONMENT_PASS_LINUX: CXXFLAGS
       with:
         package-dir: /home/runner/work/ore-wheels/ore-wheels/oreswig/OREAnalytics-SWIG/Python
