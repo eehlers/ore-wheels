@@ -1,4 +1,4 @@
-name: Build 22 - Linux - cmake x86_64 musllinux
+name: Build 21 - Linux - cmake x86_64 musllinux
 on: workflow_dispatch
 jobs:
   wheels-linux:
