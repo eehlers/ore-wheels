@@ -12,5 +12,5 @@ tar xfz ore.tgz
 #cp exchangerate.hpp ore/QuantLib/ql
 tar xfz oreswig.tgz
 #cp setup.py oreswig/OREAnalytics-SWIG/Python/setup.py
-cp oreanalytics-config oreswig/OREAnalytics-SWIG/oreanalytics-config
+cp oreanalytics-config.linux oreswig/OREAnalytics-SWIG/oreanalytics-config
 

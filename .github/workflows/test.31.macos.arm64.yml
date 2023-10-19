@@ -25,7 +25,7 @@ jobs:
         #cp exchangerate.hpp ore/QuantLib/ql
         tar xfz oreswig.tgz
         #cp setup.py oreswig/OREAnalytics-SWIG/Python/setup.py
-        cp oreanalytics-config.30 oreswig/OREAnalytics-SWIG/oreanalytics-config
+        cp oreanalytics-config.macos oreswig/OREAnalytics-SWIG/oreanalytics-config
         cd ore
         mkdir build
         cd build
