@@ -188,8 +188,8 @@ class my_build_ext(build_ext):
                     extra_compile_args.append('/MD')
 
         elif compiler == 'unix':
-            os.environ['ORE']='/project/ore'
-            ORE=os.environ['ORE']
+            #os.environ['ORE']='/project/ore'
+            #ORE=os.environ['ORE']
             ql_compile_args = \
                 os.popen('../oreanalytics-config --cflags').read()[:-1].split()
             ql_link_args = \
