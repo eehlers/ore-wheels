@@ -9,9 +9,9 @@ jobs:
       uses: pierotofy/set-swap-space@master
       with:
         swap-size-gb: 10
-    - name: Build ORE
+    - name: Unpack ORE
       run: |
-        ./build_ore.22.sh
+        ./unpack_ore_linux.sh
     - name: Build ORE wheels
       uses: pypa/cibuildwheel@v2.11.1
       env:
@@ -24,7 +24,7 @@ jobs:
         #CIBW_BUILD: cp311-musllinux_x86_64
         CIBW_ARCHS_LINUX: x86_64
         CIBW_BUILD_VERBOSITY: 2
-        CIBW_BEFORE_ALL_LINUX: ./before_all_linux.22.sh
+        CIBW_BEFORE_ALL_LINUX: ./before_all_linux.sh
         CIBW_ENVIRONMENT_LINUX: CXXFLAGS="-O2 -g0"
         CIBW_ENVIRONMENT_PASS_LINUX: CXXFLAGS
       with:
