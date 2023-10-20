@@ -127,5 +127,11 @@ cd /home/erik/quaternion/wheels2
 twine upload -r pypi *whl
 
 # INSTALL - LINUX
-xxx
+cd /home/erik/repos/oreswig.github/OREAnalytics-SWIG/Python/Examples
+python3 -m venv env1
+. ./env1/bin/activate
+pip install open-source-risk-engine
+python3 swap.py
+deactivate
+rm -rf env1
 
